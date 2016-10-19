@@ -49,11 +49,11 @@ public class PlaceAdapter extends BaseAdapter {
         {
             holder = new ViewHolder();
 
-            convertView = LayoutInflater.from(myContext).inflate(R.layout.user_list_item, null);
-            holder.titleView = (TextView) convertView.findViewById(R.id.titleView);
-            holder.spaceView = (TextView) convertView.findViewById(R.id.spaceView);
-            holder.dateTimeView = (TextView) convertView.findViewById(R.id.dateTimeView);
-            holder.userCell = (RelativeLayout) convertView.findViewById(R.id.userCell);
+            convertView = LayoutInflater.from(myContext).inflate(R.layout.list_item, null);
+            holder.distanceView = (TextView) convertView.findViewById(R.id.textView2);
+            holder.titleView = (TextView) convertView.findViewById(R.id.textView3);
+            holder.starTextView = (TextView) convertView.findViewById(R.id.textView4);
+            holder.placeCell = (LinearLayout) convertView.findViewById(R.id.placeCell);
 
             convertView.setTag(holder);
         }
@@ -104,11 +104,10 @@ public class PlaceAdapter extends BaseAdapter {
     }
 
     private static class ViewHolder {
-        TextView titleView;
         //2nd create another TextView dateView...etc
-        TextView spaceView;
-        TextView dateTimeView;
-        TextView headerView;
-        RelativeLayout userCell;
+        TextView titleView;
+        TextView distanceView;
+        TextView starTextView;
+        RelativeLayout placeCell;
     }
 }
