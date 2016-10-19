@@ -5,6 +5,15 @@ package com.example.joshualee.myapplication;
  */
 public class Place {
     private String name;
+    private String distance;
+
+    public String getDistance() {
+        return distance;
+    }
+
+    public void setDistance(String distance) {
+        this.distance = distance;
+    }
 
     public String getName() {
         return name;

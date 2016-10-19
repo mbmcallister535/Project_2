@@ -45,15 +45,15 @@ public class PlaceAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
 
+        Place place = places[position];
+
         if(convertView == null)
         {
             holder = new ViewHolder();
 
             convertView = LayoutInflater.from(myContext).inflate(R.layout.list_item, null);
             holder.distanceView = (TextView) convertView.findViewById(R.id.textView2);
-            holder.titleView = (TextView) convertView.findViewById(R.id.textView3);
             holder.starTextView = (TextView) convertView.findViewById(R.id.textView4);
-            holder.placeCell = (LinearLayout) convertView.findViewById(R.id.placeCell);
 
             convertView.setTag(holder);
         }
@@ -63,24 +63,11 @@ public class PlaceAdapter extends BaseAdapter {
 
         //set the certain text values for the corresponding files
         //4th then you can set the text in the view
-//        System.out.println(event.getTitle());
-//        holder.titleView.setText(event.getTitle());
-//        holder.spaceView.setText(event.getSpace());
-//        holder.dateTimeView.setText(event.getDateTime());
 
-        if(event.isHeader()){
-            holder.headerView.setText(event.getTitle());
-            holder.headerView.setBackgroundColor(ContextCompat.getColor(myContext, R.color.lightGreenColor));
-        }
-        else{
-            //check to see if it is header
-            //set the certain text values for the corresponding files
-            //4th then you can set the text in the view
-            System.out.println(event.getTitle());
-            holder.titleView.setText(event.getTitle());
-            holder.spaceView.setText(event.getSpace());
-            holder.dateTimeView.setText(event.getDateTime());
-            holder.userCell.setBackgroundColor(ContextCompat.getColor(myContext, R.color.whiteColor));
+        System.out.println(event.getTitle());
+        holder.titleView.setText(place.getName());
+        holder.distanceView.setText(place.getDistance());
+        holder.userCell.setBackgroundColor(ContextCompat.getColor(myContext, R.color.whiteColor));
         }
 
 
