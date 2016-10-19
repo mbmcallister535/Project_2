@@ -54,8 +54,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:paddingRight = "10dp"
         android:text="250 ft"
-
-        android:id="@+id/textView4"
+        android:id="@+id/distanceText"
         android:layout_below="@+id/bannerView"
         android:layout_alignParentEnd="true"
         android:textSize="12dp" />
@@ -63,10 +62,10 @@
     <ImageView
         android:layout_width="50dp"
         android:layout_height="100dp"
-        android:id="@+id/imageView2"
+        android:id="@+id/locationImage"
         android:src="@drawable/location_pin_solid"
-        android:layout_toStartOf="@+id/textView4"
-        android:layout_alignBottom="@+id/textView4"
+        android:layout_toStartOf="@+id/distanceText"
+        android:layout_alignBottom="@+id/distanceText"
         android:layout_below="@+id/bannerView" />
 
 
