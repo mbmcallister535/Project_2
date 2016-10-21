@@ -24,6 +24,7 @@
         android:layout_alignParentStart="true" />
 
     <RatingBar
+        style="?android:attr/ratingBarStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop ="10dp"
@@ -31,22 +32,20 @@
         android:id="@+id/ratingBar"
         android:rating = "5"
         android:numStars ="5"
-        android:style = "?android:attr/ratingBarStyleSmall"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/nameView"
         android:layout_alignEnd="@+id/nameView" />
 
     <Button
         android:background="@android:color/transparent"
-        android:style="?android:attr/borderlessButtonStyle"
         android:paddingLeft = "10dp"
-        android:alignLeft = "@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Get Directions"
         android:id="@+id/button"
         android:textColor="@android:color/holo_blue_dark"
         android:layout_below="@+id/ratingBar"
+        android:stateListAnimator="@null"
         android:layout_alignParentStart="true" />
 
     <TextView
