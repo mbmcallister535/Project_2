@@ -35,4 +35,14 @@
         android:layout_below="@+id/toolbar"
         android:layout_above="@+id/tab_layout" />
 
+    <ImageView
+        android:layout_width="50dp"
+        android:layout_height="24dp"
+        app:srcCompat="@drawable/mycornerlogo_01"
+        android:id="@+id/imageView"
+        android:elevation="12dp"
+        android:layout_alignParentEnd="true"
+        android:layout_above="@+id/pager"
+        android:layout_alignParentTop="true" />
+
 </RelativeLayout>
