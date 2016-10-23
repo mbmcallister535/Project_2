@@ -18,21 +18,20 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        //getSupportActionBar().setIcon(R.drawable.mycornerlogo_01_24px_2);
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         final int[] icons = new int[] {
             R.drawable.ic_home_black_24px,
             R.drawable.ic_replay_black_24px,
-            R.drawable.ic_favorite_black_24px
+            R.drawable.ic_favorite
         };
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         for (int k=0; k < icons.length; k++) {
             tabLayout.addTab(tabLayout.newTab().setIcon(icons[k]));
         }
-        /*tabLayout.addTab(tabLayout.newTab().setText("Home"));
-        tabLayout.addTab(tabLayout.newTab().setText("Recent"));
-        tabLayout.addTab(tabLayout.newTab().setText("Favorite"));
-        */tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
         final PagerAdapter adapter = new PagerAdapter
@@ -57,10 +56,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    /*@Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.game_menu, menu);
+        inflater.inflate(R.menu.menu_filter, menu);
         return true;
-    }*/
+    }
 }
