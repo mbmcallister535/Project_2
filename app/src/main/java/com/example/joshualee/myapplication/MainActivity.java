@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         final int[] icons = new int[] {
-            R.drawable.ic_home_black_24px,
-            R.drawable.ic_replay_black_24px,
+            R.drawable.ic_home,
+            R.drawable.ic_recent,
             R.drawable.ic_favorite
         };
 

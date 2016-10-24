@@ -54,14 +54,20 @@
         android:layout_alignParentBottom="true" />
 
     <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="24dp"
         app:srcCompat="@drawable/ic_list_black_24px"
         android:background="@color/colorPrimary"
         android:elevation="4dp"
         android:id="@+id/menu_button"
         android:layout_above="@+id/pager"
         android:layout_alignParentTop="true" />
+
+    <Switch
+        android:text="Switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch1" />
 
 </RelativeLayout>
 
