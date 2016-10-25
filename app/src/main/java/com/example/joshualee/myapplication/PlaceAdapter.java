@@ -21,6 +21,7 @@ public class PlaceAdapter extends BaseAdapter{
 
     public PlaceAdapter(Context context, Place[] p)
     {
+        myContext = context;
         places=p;
     }
 
@@ -63,9 +64,6 @@ public class PlaceAdapter extends BaseAdapter{
         //4th then you can set the text in the view
         holder.titleView.setText(place.getName());
         holder.distanceView.setText(place.getDistance());
-
-//        holder.userCell.setBackgroundColor(ContextCompat.getColor(myContext, R.color.whiteColor));
-
         return convertView;
     }
 
