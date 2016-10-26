@@ -5,4 +5,5 @@
     <color name="colorAccent">#f36e21</color>
     <color name="colorHeader">#95d4d1</color>
     <color name="background">#ffffff</color>
+    <color name="popupBackground">#eeeeee</color>
 </resources>

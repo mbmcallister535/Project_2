@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">MyCorner</string>
+    <string name="popupTextWidth">100dp</string>
+    <string name="popupTextHeight">30dp</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

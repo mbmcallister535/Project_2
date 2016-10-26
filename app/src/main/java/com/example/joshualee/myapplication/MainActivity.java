@@ -1,16 +1,25 @@
 package com.example.joshualee.myapplication;
 
+import android.app.ActionBar;
+import android.content.Context;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.PopupMenu;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import static android.R.id.button1;
@@ -19,6 +28,7 @@ import static android.R.id.button1;
 public class MainActivity extends AppCompatActivity {
 
     private ImageButton button1;
+    private SeekBar seekbarLoc, seekbarWif, seekbarDin, seekbarSea, seekbarPri, seekbarNoi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,26 +40,57 @@ public class MainActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayShowTitleEnabled(false);
 
         button1 = (ImageButton) findViewById(R.id.menu_button);
+
         button1.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View v) {
-                //Creating the instance of PopupMenu
-                PopupMenu popup = new PopupMenu(MainActivity.this, button1);
-                //Inflating the Popup using xml file
-                popup.getMenuInflater().inflate(R.menu.menu_filter, popup.getMenu());
 
-                //registering popup with OnMenuItemClickListener
-                popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                    public boolean onMenuItemClick(MenuItem item) {
-                        Toast.makeText(MainActivity.this,"You Clicked : " + item.getTitle(),Toast.LENGTH_SHORT).show();
-                        return true;
-                    }
-                });
+                LayoutInflater layoutInflater = getLayoutInflater();
+                View popupView = layoutInflater.inflate(R.layout.popup_filter, null);
+                PopupWindow popupWindow = new PopupWindow(MainActivity.this);
+                int popupWidth = ViewGroup.LayoutParams.WRAP_CONTENT;
+                int popupHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
+                popupWindow.setHeight(popupHeight);
+                popupWindow.setWidth(popupWidth);
+                popupWindow.setFocusable(true);
+                popupWindow.setContentView(popupView);
+                popupWindow.setOutsideTouchable(true);
+                int xOffset = -5;
+                int yOffset = 210;
+                popupWindow.showAsDropDown(popupView, xOffset, yOffset);
+                seekbarLoc = (SeekBar) popupView.findViewById(R.id.locationSeekBar);
+                seekbarWif = (SeekBar) popupView.findViewById(R.id.wifiSeekBar);
+                seekbarDin = (SeekBar) popupView.findViewById(R.id.diningSeekBar);
+                seekbarSea = (SeekBar) popupView.findViewById(R.id.seatingSeekBar);
+                seekbarPri = (SeekBar) popupView.findViewById(R.id.priceSeekBar);
+                seekbarNoi = (SeekBar) popupView.findViewById(R.id.noiseSeekBar);
+                SeekBar[] seekbarArray = {seekbarLoc, seekbarWif, seekbarDin, seekbarSea, seekbarPri, seekbarNoi};
 
-                popup.show();//showing popup menu
+                for (int k=0; k < seekbarArray.length; k++){
+                    SeekBar temp = seekbarArray[k];
+                    temp.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                        int changedProgress = 0;
+
+                        @Override
+                        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                            changedProgress = progress;
+                        }
+
+                        @Override
+                        public void onStartTrackingTouch(SeekBar seekBar) {
+
+                        }
+
+                        @Override
+                        public void onStopTrackingTouch(SeekBar seekBar) {
+                            Toast.makeText(MainActivity.this, "progress is updated", Toast.LENGTH_SHORT).show();
+                        }
+
+                    });
+                }
             }
-        });//closing the setOnClickListener method
+        });
 
 
         final int[] icons = new int[] {
