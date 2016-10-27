@@ -73,17 +73,6 @@
         style="@style/Widget.AppCompat.SeekBar.Discrete"
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:id="@+id/diningSeekBar"
-        android:max="2"
-        android:progress="0"
-        android:layout_below="@+id/wifiSeekBar"
-        android:layout_alignEnd="@+id/wifiSeekBar"
-        android:layout_toEndOf="@+id/dining" />
-
-    <SeekBar
-        style="@style/Widget.AppCompat.SeekBar.Discrete"
-        android:layout_width="150dp"
-        android:layout_height="50dp"
         android:id="@+id/seatingSeekBar"
         android:max="2"
         android:progress="2"
@@ -122,6 +111,16 @@
         android:id="@+id/locationSeekBar"
         android:layout_alignParentTop="true"
         android:layout_toEndOf="@+id/location" />
+
+    <SeekBar
+        style="@style/Widget.AppCompat.SeekBar.Discrete"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/diningSeekBar"
+        android:max="1"
+        android:progress="0"
+        android:layout_below="@+id/wifi"
+        android:layout_toEndOf="@+id/dining" />
 
 
 </RelativeLayout>
