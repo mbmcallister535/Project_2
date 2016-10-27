@@ -9,7 +9,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class HomeFragment extends ListFragment {
+import java.util.ArrayList;
+import java.util.List;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
+import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Toast;
+
+//import com.androidopentutorials.spfavorites.R;
+//import com.androidopentutorials.spfavorites.adapter.ProductListAdapter;
+//import com.androidopentutorials.spfavorites.beans.Product;
+//import com.androidopentutorials.spfavorites.utils.SharedPreference;
+
+public class HomeFragment extends ListFragment implements OnItemClickListener, OnItemLongClickListener {
+
+    List<Place> places;
+    Activity activity;
+    SharedPreference sharedPreference;
+    ListView placeListView;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -32,10 +58,33 @@ public class HomeFragment extends ListFragment {
         places[1] = place1;
         places[2] = place2;
 
+        View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        placeListView = (ListView) view.findViewById(android.R.id.list);
+
         PlaceAdapter pAdapter = new PlaceAdapter(getActivity(), places);
         setListAdapter(pAdapter);
 
+        placeListView.setAdapter(pAdapter);
+
+        placeListView.setOnItemClickListener(this);
+        placeListView.setOnItemLongClickListener(this);
+
         return inflater.inflate(R.layout.fragment_home, container, false);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        Toast.makeText(activity, "Clicked", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public boolean onItemLongClick(AdapterView<?> arg0, View view, int position, long arg3) {
+
+        sharedPreference.addFavorite(activity, places.get(position));
+        Toast.makeText(activity, "added to favorites", Toast.LENGTH_SHORT).show();
+
+        return true;
     }
 
 }
