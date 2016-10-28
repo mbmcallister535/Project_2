@@ -16,29 +16,13 @@ public class FavoriteFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        /*Place place0 = new Place("m",10.0,10.0,10.0);
-        place0.setDistance(1000);
-        place0.setName("Michael's House");
+        SharedPreference sharedPreference;
+        sharedPreference = new SharedPreference();
 
-        Place place1 = new Place("m",10.0,10.0,10.0);
-        place1.setDistance(5000);
-        place1.setName("Fariz's House");
+        ArrayList<Place> places = new ArrayList<Place>();
 
-        Place place2 = new Place("m",10.0,10.0,10.0);
-        place2.setDistance(10000);
-        place2.setName("Josh's House");
+        places = sharedPreference.getFavorites(getActivity());
 
-        Place[] places = new Place[3];
-        places[0] = place0;
-        places[1] = place1;
-        places[2] = place2;
-        */
-        double user_latitude = ((MainActivity)getActivity()).getmLatitude();
-        double user_longitude = ((MainActivity)getActivity()).getmLongitude();
-        JReader j = new JReader(user_latitude,user_longitude);
-        j.set_distances();
-        j.sort_list_by_distance();
-        ArrayList<Place> places = j.return_list();
         PlaceAdapter pAdapter = new PlaceAdapter(getActivity(), places);
         setListAdapter(pAdapter);
 
