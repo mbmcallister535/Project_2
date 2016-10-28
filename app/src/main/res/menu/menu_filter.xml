@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/location"
+        android:title="Location" >
+    </item>
+
+    <item android:id="@+id/wifi"
+        android:title="Wifi" >
+    </item>
+
+    <item android:id="@+id/dining"
+        android:title="Dining" >
+    </item>
+
+    <item android:id="@+id/seating"
+        android:title="Seating" >
+    </item>
+
+    <item android:id="@+id/price"
+        android:title="Price" >
+    </item>
+
+    <item android:id="@+id/noise"
+        android:title="Noise" >
+    </item>
+
+</menu>

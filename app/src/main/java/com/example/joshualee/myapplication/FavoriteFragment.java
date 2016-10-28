@@ -33,8 +33,8 @@ public class FavoriteFragment extends ListFragment {
         places[1] = place1;
         places[2] = place2;
         */
-        double user_latitude = ((MainActivity)getActivity()).getLatitude();
-        double user_longitude = ((MainActivity)getActivity()).getLongitude();
+        double user_latitude = ((MainActivity)getActivity()).getmLatitude();
+        double user_longitude = ((MainActivity)getActivity()).getmLongitude();
         JReader j = new JReader(user_latitude,user_longitude);
         j.set_distances();
         j.sort_list_by_distance();
