@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RatingBar;
 
 import java.util.ArrayList;
 
@@ -45,6 +46,8 @@ public class HomeFragment extends ListFragment {
         seating = filter.getInt("seatingSeekBar", 0);
         price = filter.getInt("priceSeekBar", 0);
         noise = filter.getInt("noiseSeekBar", 0);
+
+
 
         double user_latitude = ((MainActivity)getActivity()).getmLatitude();
         double user_longitude = ((MainActivity)getActivity()).getmLongitude();

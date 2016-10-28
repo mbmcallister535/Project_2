@@ -4,6 +4,7 @@ import android.Manifest;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.media.Rating;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
@@ -20,6 +21,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.PopupWindow;
+import android.widget.RatingBar;
 import android.widget.SeekBar;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
@@ -36,6 +38,8 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
     SeekBar seekbarLoc, seekbarWif, seekbarDin, seekbarSea, seekbarPri, seekbarNoi;
     protected GoogleApiClient mGoogleApiClient;
     private SharedPreferences filter;
+
+
     Location mLastLocation;
     int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION, k;
     double mLatitude = 41.600235;
@@ -53,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         buildGoogleApiClient();
+
 
         button1 = (ImageButton) findViewById(R.id.menu_button);
 

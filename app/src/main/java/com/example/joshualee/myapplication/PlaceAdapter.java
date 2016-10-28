@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -56,6 +57,7 @@ public class PlaceAdapter extends BaseAdapter{
             holder.titleView = (TextView) convertView.findViewById(R.id.nameView);
             holder.distanceView = (TextView) convertView.findViewById(R.id.distanceText);
             holder.placeCell = (RelativeLayout) convertView.findViewById(R.id.placeCell);
+
 
             convertView.setTag(holder);
         }
