@@ -25,6 +25,8 @@ import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.location.LocationServices;
 
+import java.util.ArrayList;
+
 import static java.sql.Types.INTEGER;
 
 public class MainActivity extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener {
@@ -35,8 +37,10 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
     protected GoogleApiClient mGoogleApiClient;
     private SharedPreferences filter;
     Location mLastLocation;
-    int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION;
-    int k;
+    int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION, k;
+    double mLatitude, mLongitude;
+    String[] filterPrefName = {"locationSeekBar", "wifiSeekBar",
+            "diningSeekBar", "seatingSeekBar", "priceSeekBar", "noiseSeekBar"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +48,6 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        //getSupportActionBar().setIcon(R.drawable.mycornerlogo_01_24px_2);
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         buildGoogleApiClient();
 
@@ -56,14 +59,11 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
             public void onClick(View v) {
 
                 popupWindowCreate();
-                SeekBar[] seekbarArray = {seekbarLoc, seekbarWif, seekbarDin, seekbarSea, seekbarPri, seekbarNoi};
-                final String[] filterPrefName = {"locationSeekBar", "wifiSeekBar",
-                        "diningSeekBar", "seatingSeekBar", "priceSeekBar", "noiseSeekBar"};
-
+                final SeekBar[] seekbarArray = {seekbarLoc, seekbarWif, seekbarDin, seekbarSea, seekbarPri, seekbarNoi};
                 for (k=0; k < seekbarArray.length;k++){
                     SeekBar temp = seekbarArray[k];
                     filter = getSharedPreferences("filterPrefs",0);
-                    int num = filter.getInt(Integer.toString(temp.getId()), 0);
+                    int num = filter.getInt(filterPrefName[k], temp.getProgress());
                     temp.setProgress(num);
                     temp.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                         int changedProgress = 0;
@@ -80,10 +80,16 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
 
                         @Override
                         public void onStopTrackingTouch(SeekBar seekBar) {
-                            //Toast.makeText(MainActivity.this, "progress is updated", Toast.LENGTH_SHORT).show();
+                            int counter;
+                            //Loop to find the index for seekBar corresponding to filterPrefName at the bottom
+                            for (counter = 0; counter < seekbarArray.length; counter++) {
+                                if (seekBar == seekbarArray[counter])
+                                    break;
+                            }
+
                             SharedPreferences.Editor editor = filter.edit();
-                            editor.putInt(Integer.toString(seekBar.getId()), changedProgress);
-                            editor.commit();
+                            editor.putInt(filterPrefName[counter], changedProgress);
+                            editor.apply();
                         }
 
                     });
@@ -186,11 +192,9 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
         }
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if (mLastLocation != null) {
-            //mLatitudeText.setText(String.format("%s: %f", mLatitudeLabel,
-            //        mLastLocation.getLatitude()));
+            mLatitude = mLastLocation.getLatitude();
+            mLongitude = mLastLocation.getLongitude();
             Toast.makeText(this, "Location Detected", Toast.LENGTH_SHORT).show();
-            //mLongitudeText.setText(String.format("%s: %f", mLongitudeLabel,
-            //        mLastLocation.getLongitude()));
         } else {
             Toast.makeText(this, "No Location Detected", Toast.LENGTH_LONG).show();
         }
@@ -235,4 +239,19 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
         seekbarNoi = (SeekBar) popupView.findViewById(R.id.noiseSeekBar);
     }
 
+    public double getmLatitude() {
+        return mLatitude;
+    }
+
+    public double getmLongitude() {
+        return mLongitude;
+    }
+    /*public String getName(SeekBar seekBar){
+        int temp = seekBar.getId();
+        switch (temp) {
+            case
+        }
+
+
+    }*/
 }
