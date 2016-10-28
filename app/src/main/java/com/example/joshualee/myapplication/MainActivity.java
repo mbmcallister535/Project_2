@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -26,9 +28,6 @@ import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
 import com.google.android.gms.location.LocationServices;
 
-import java.util.ArrayList;
-
-import static java.sql.Types.INTEGER;
 
 public class MainActivity extends AppCompatActivity implements ConnectionCallbacks, OnConnectionFailedListener {
 
@@ -244,6 +243,20 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
         seekbarSea = (SeekBar) popupView.findViewById(R.id.seatingSeekBar);
         seekbarPri = (SeekBar) popupView.findViewById(R.id.priceSeekBar);
         seekbarNoi = (SeekBar) popupView.findViewById(R.id.noiseSeekBar);
+
+        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener(){
+            @Override
+            public void onDismiss() {
+                // Reload current fragment
+                Fragment frg = null;
+                frg = getSupportFragmentManager().findFragmentByTag("Your_Fragment_TAG");
+                final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+                ft.detach(frg);
+                ft.attach(frg);
+                ft.commit();
+
+            }
+        });
     }
 
     public double getmLatitude() {

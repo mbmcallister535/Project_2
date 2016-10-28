@@ -5,14 +5,6 @@
     android:background="@color/popupBackground">
 
     <TextView
-        android:text="Location"
-        android:id="@+id/location"
-        android:textSize="20sp"
-        android:gravity="center"
-        android:layout_height="50dp"
-        android:layout_width="120dp"/>
-
-    <TextView
         android:text="Dining"
         android:textSize="20sp"
         android:gravity="center"
@@ -121,6 +113,45 @@
         android:progress="0"
         android:layout_below="@+id/wifi"
         android:layout_toEndOf="@+id/dining" />
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/label1"
+        android:text="5 Miles"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/location"
+        android:paddingTop="30dp"/>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/label2"
+        android:text="10 Miles"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/location"
+        android:paddingTop="30dp"
+        android:paddingLeft="60dp"/>
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:id="@+id/label3"
+        android:text="10 Miles"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/location"
+        android:paddingTop="30dp"
+        android:paddingLeft="120dp"/>
+
+    <TextView
+        android:text="Location"
+        android:id="@+id/location"
+        android:textSize="20sp"
+        android:gravity="center"
+        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
