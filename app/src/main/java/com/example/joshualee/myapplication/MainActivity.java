@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
         seekbarPri = (SeekBar) popupView.findViewById(R.id.priceSeekBar);
         seekbarNoi = (SeekBar) popupView.findViewById(R.id.noiseSeekBar);
 
-        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener(){
+/*        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener(){
             @Override
             public void onDismiss() {
                 // Reload current fragment
@@ -256,7 +256,7 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
                 ft.commit();
 
             }
-        });
+        });*/
     }
 
     public double getmLatitude() {
