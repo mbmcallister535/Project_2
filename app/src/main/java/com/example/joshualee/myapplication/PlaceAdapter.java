@@ -10,6 +10,9 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+
 import static java.lang.System.out;
 
 /**
@@ -17,9 +20,9 @@ import static java.lang.System.out;
  */
 public class PlaceAdapter extends BaseAdapter{
     private Context myContext;
-    private Place[] places;
+    private ArrayList<Place> places;
 
-    public PlaceAdapter(Context context, Place[] p)
+    public PlaceAdapter(Context context, ArrayList<Place> p)
     {
         myContext = context;
         places=p;
@@ -27,12 +30,12 @@ public class PlaceAdapter extends BaseAdapter{
 
     @Override
     public int getCount() {
-        return places.length;
+        return places.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return places[position];
+        return places.get(position);
     }
 
     @Override
@@ -43,7 +46,7 @@ public class PlaceAdapter extends BaseAdapter{
     public View getView(int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
 
-        Place place = places[position];
+        Place place = places.get(position);
 
         if(convertView == null)
         {
@@ -63,7 +66,7 @@ public class PlaceAdapter extends BaseAdapter{
         //set the certain text values for the corresponding files
         //4th then you can set the text in the view
         holder.titleView.setText(place.getName());
-        holder.distanceView.setText(place.getDistance());
+        holder.distanceView.setText(Double.toString(place.getDistance()));
         return convertView;
     }
 

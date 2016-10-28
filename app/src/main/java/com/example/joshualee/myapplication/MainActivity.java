@@ -1,13 +1,18 @@
 package com.example.joshualee.myapplication;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
+import android.os.StrictMode;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -19,19 +24,27 @@ import android.widget.ListView;
 import android.app.ListActivity;
 import android.app.ActivityOptions;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.LocationSettingsRequest;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 
 public class MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private GoogleApiClient mGoogleApiClient;
     private double user_latitude;
     private double user_longitude;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Toast.makeText(this,"FUCKING HELLO",Toast.LENGTH_SHORT).show();
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+        Log.v("hi","AM I IN HERE");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -49,7 +62,6 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
                 R.drawable.ic_replay_black_24px,
                 R.drawable.ic_favorite_black_24px
         };
-
         TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         for (int k = 0; k < icons.length; k++) {
             tabLayout.addTab(tabLayout.newTab().setIcon(icons[k]));
@@ -82,6 +94,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             }
         });
 
+
     }
 
     @Override
@@ -98,12 +111,17 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
             // for ActivityCompat#requestPermissions for more details.
             return;
         }
+        Log.v("ula","here");
+        Toast.makeText(this,"FUCKING SHIT",Toast.LENGTH_SHORT).show();
         Location mLastLocation = LocationServices.FusedLocationApi.getLastLocation(
                 mGoogleApiClient);
         if (mLastLocation != null) {
+            Log.v("ula","We in Here");
             user_latitude = mLastLocation.getLatitude();
             user_longitude = mLastLocation.getLongitude();
-
+            String ula = Double.toString(user_latitude);
+            Log.v("ula",ula);
+            Toast.makeText(this, ula, Toast.LENGTH_SHORT).show();
         }
 
     }
@@ -117,6 +135,7 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         Log.v("hi","onConnectionFailed");
     }
+
     @Override
     protected void onStart() {
         mGoogleApiClient.connect();
@@ -127,7 +146,14 @@ public class MainActivity extends AppCompatActivity implements GoogleApiClient.C
         mGoogleApiClient.disconnect();
         super.onStop();
     }
-
+    public double getLatitude()
+    {
+        return user_latitude;
+    }
+    public double getLongitude()
+    {
+        return user_longitude;
+    }
     /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
