@@ -53,7 +53,7 @@ public class HomeFragment extends ListFragment {
         j.sort_list_by_distance();
         j.set_filter_list(location,wifi,dining,seating,price,noise);
         j.sort_filter_by_distance();
-        ArrayList<Place> places = j.return_list();
+        ArrayList<Place> places = j.return_filter();
         PlaceAdapter pAdapter = new PlaceAdapter(getActivity(), places);
         setListAdapter(pAdapter);
 

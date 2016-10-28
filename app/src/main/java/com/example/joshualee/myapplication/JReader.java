@@ -114,29 +114,30 @@ public class JReader {
         {
             Place temp = places.get(i);
             double dist = temp.getDistance();
+            String checker = String.valueOf(dist);
             boolean wifi = temp.getWifi();
             String dining = temp.getDining();
             String seating = temp.getSeating();
             String price = temp.getPrice();
             String noise = temp.getNoise();
+            String switch_clause = String.valueOf(l);
+            int condition_counter = 0;
+            Log.v("location",switch_clause);
             switch (l){
                 case 0:
                     if(dist <= 5)
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        Log.v("location","here");
+                        condition_counter++;
                     }
                 case 1:
                     if(dist<=10){
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case 2:
                     if(dist <= 15)
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
-
+                        condition_counter++;
                     }
             }
             switch(w)
@@ -145,15 +146,13 @@ public class JReader {
                 case(0):
                     if(wifi == false)
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
 
                 case 1:
                     if(wifi == true)
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
 
 
@@ -164,19 +163,16 @@ public class JReader {
                 case 0:
                     if(dining == "coffee")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case 1:
                     if(dining == "food") {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case 2:
                     if(dining == "both")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
 
             }
@@ -185,20 +181,17 @@ public class JReader {
                 case 0:
                     if(dining == "indoor")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case 1:
                     if(dining == "outdoor")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case 2:
                     if(dining == "both")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
             }
             switch(p)
@@ -206,20 +199,17 @@ public class JReader {
                 case 0:
                     if(price == "$")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case(1):
                     if(price == "$$")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case(2):
                     if(price == "$$$")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
             }
             switch(n)
@@ -227,21 +217,28 @@ public class JReader {
                 case 0:
                     if(noise == "quiet")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case 1:
                     if(noise == "medium")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case 2:
                     if(noise == "loud")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
+            }
+            if(condition_counter == 7)
+            {
+                String con_counter = String.valueOf(condition_counter);
+                Log.v("location", "hereyyyy");
+                Log.v("location",con_counter);
+                Log.v("location",temp.getName());
+                filterPlaces.add(temp);
+                length_filter++;
+
             }
 
 
@@ -302,7 +299,7 @@ public class JReader {
         while(flag)
         {
             flag = false;
-            for(j = 0; j < length_list-1; j++)
+            for(j = 0; j < length_filter-1; j++)
             {
                 if(filterPlaces.get(j).getDistance() > filterPlaces.get(j+1).getDistance())
                 {
