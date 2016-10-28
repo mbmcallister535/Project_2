@@ -6,14 +6,10 @@ import android.content.pm.PackageManager;
 import android.location.Location;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -38,12 +34,13 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
 
     protected static final String TAG = "MainActivity";
     private ImageButton button1;
-    private SeekBar seekbarLoc, seekbarWif, seekbarDin, seekbarSea, seekbarPri, seekbarNoi;
+    SeekBar seekbarLoc, seekbarWif, seekbarDin, seekbarSea, seekbarPri, seekbarNoi;
     protected GoogleApiClient mGoogleApiClient;
     private SharedPreferences filter;
     Location mLastLocation;
     int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION, k;
-    double mLatitude, mLongitude;
+    double mLatitude = 41.600235;
+    double mLongitude = -93.6513452;
     String[] filterPrefName = {"locationSeekBar", "wifiSeekBar",
             "diningSeekBar", "seatingSeekBar", "priceSeekBar", "noiseSeekBar"};
 
@@ -256,12 +253,9 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
     public double getmLongitude() {
         return mLongitude;
     }
-    /*public String getName(SeekBar seekBar){
-        int temp = seekBar.getId();
-        switch (temp) {
-            case
-        }
 
+   // public int[] getFilterPrefs() {
+   //     return
+   // }
 
-    }*/
 }

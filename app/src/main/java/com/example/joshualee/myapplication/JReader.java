@@ -4,6 +4,7 @@ package com.example.joshualee.myapplication;
  * Created by miggle on 10/26/16.
  */
 //import java.awt.List;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -17,16 +18,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
 public class JReader {
     private ArrayList<Place> places = new ArrayList<Place>();
     private ArrayList<Place> filterPlaces = new ArrayList<Place>();
     private int length_list = 0;
     private double user_latitude = 41.600235;
     private double user_longitude = -93.6513452;
+
     public JReader(double u_lat, double u_long)
     {
+
         Log.v("Hi","THIS IS NEW");
         Log.v("hi", "Am I in here");
+
 
         URL url;
         String json_string = "";
