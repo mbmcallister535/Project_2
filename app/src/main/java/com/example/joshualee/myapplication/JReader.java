@@ -23,21 +23,27 @@ public class JReader {
     private ArrayList<Place> places = new ArrayList<Place>();
     private ArrayList<Place> filterPlaces = new ArrayList<Place>();
     private int length_list = 0;
-    private double user_latitude = 41.600235;
-    private double user_longitude = -93.6513452;
+    private int length_filter = 0;
+    private double user_latitude;
+    private double user_longitude;
 
     public JReader(double u_lat, double u_long)
     {
 
         Log.v("Hi","THIS IS NEW");
         Log.v("hi", "Am I in here");
-
+        user_latitude = u_lat;
+        user_longitude = u_long;
+        String str_lat = String.valueOf(u_lat);
+        String str_long = String.valueOf(u_long);
 
         URL url;
         String json_string = "";
         String json_data = "";
         try{
-            url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=41.600235,-93.6513452&radius=50000&type=cafe&key=AIzaSyBhnE7KFYA_ASATz_B94xYIT3Ubof0ubwY");
+            //String str_user_latitude = Double.toString(u_lat);
+            //String str_user_longitude = Double.toString(u_long);
+            url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+str_lat+","+str_long+"&radius=50000&type=cafe&key=AIzaSyBhnE7KFYA_ASATz_B94xYIT3Ubof0ubwY");
             URLConnection yc = url.openConnection();
             Log.v("hi", "is it even here");
             BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
@@ -76,7 +82,7 @@ public class JReader {
                 }
                 //String open_now = hours.optString("open_now").toString();
                 json_data += "Node"+i+" : \n Name= "+ name +" \n lat= " +lat  + "\n lng= " + lng +"\n rating= " + rating +"\n open= "+open_now +"\n price= " + price_level + "\n";
-                Place p = new Place(name,10,lat,lng);
+                Place p = new Place(name,10,lat,lng,price_level);
                 this.places.add(p);
                 this.length_list++;
             }
@@ -102,6 +108,146 @@ public class JReader {
             places.get(i).printPlace();
         }
     }
+    public void set_filter_list(int l, int w, int d, int s, int p, int n )
+    {
+        for(int i = 0; i < length_list; i++)
+        {
+            Place temp = places.get(i);
+            double dist = temp.getDistance();
+            boolean wifi = temp.getWifi();
+            String dining = temp.getDining();
+            String seating = temp.getSeating();
+            String price = temp.getPrice();
+            String noise = temp.getNoise();
+            switch (l){
+                case 0:
+                    if(dist <= 5)
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+                case 1:
+                    if(dist<=10){
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+                case 2:
+                    if(dist <= 15)
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+
+                    }
+            }
+            switch(w)
+            {
+
+                case(0):
+                    if(wifi == false)
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+
+                case 1:
+                    if(wifi == true)
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+
+
+
+            }
+            switch(d)
+            {
+                case 0:
+                    if(dining == "coffee")
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+                case 1:
+                    if(dining == "food") {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+                case 2:
+                    if(dining == "both")
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+
+            }
+            switch(s)
+            {
+                case 0:
+                    if(dining == "indoor")
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+                case 1:
+                    if(dining == "outdoor")
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+                case 2:
+                    if(dining == "both")
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+            }
+            switch(p)
+            {
+                case 0:
+                    if(price == "$")
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+                case(1):
+                    if(price == "$$")
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+                case(2):
+                    if(price == "$$$")
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+            }
+            switch(n)
+            {
+                case 0:
+                    if(noise == "quiet")
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+                case 1:
+                    if(noise == "medium")
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+                case 2:
+                    if(noise == "loud")
+                    {
+                        filterPlaces.add(temp);
+                        length_filter++;
+                    }
+            }
+
+
+
+        }
+    }
     public void set_distances()
     {
         for(int i = 0; i < length_list; i++)
@@ -124,7 +270,7 @@ public class JReader {
     {
         return places;
     }
-
+    public ArrayList<Place> return_filter() {return filterPlaces; }
     //Bubble sort found on http://mathbits.com/MathBits/Java/arrays/Bubble.htm
     public void sort_list_by_distance()
     {
@@ -146,6 +292,26 @@ public class JReader {
 
             }
 
+        }
+    }
+    public void sort_filter_by_distance()
+    {
+        int j;
+        boolean flag = true;
+        Place temp;
+        while(flag)
+        {
+            flag = false;
+            for(j = 0; j < length_list-1; j++)
+            {
+                if(filterPlaces.get(j).getDistance() > filterPlaces.get(j+1).getDistance())
+                {
+                    temp = filterPlaces.get(j);
+                    filterPlaces.set(j,filterPlaces.get(j+1));
+                    filterPlaces.set(j+1, temp);
+                    flag = true;
+                }
+            }
         }
     }
 }

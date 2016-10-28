@@ -10,12 +10,26 @@ public class Place {
     private double distance;
     private double latitude;
     private double longitude;
-    public Place(String n, double d,double lat,double lon)
+    private boolean wifi = true;
+    private String dining = "both";
+    private String price;
+    private String seating = "both";
+    private String noise = "quiet";
+    private String url = "www.placeholder.com";
+    public Place(String n, double d,double lat,double lon,String p)
     {
         latitude = lat;
         longitude = lon;
         name = n;
         distance = d;
+        if(p!="")
+        {
+            price = p;
+        }
+        else
+        {
+            price = "$$";
+        }
     }
     public double getDistance() {
         String str_distance = Double.toString(distance);
@@ -36,10 +50,34 @@ public class Place {
     {
         this.name = n;
     }
+    public boolean getWifi()
+    {
+        return this.wifi;
+    }
+    public String getDining()
+    {
+        return this.dining;
+    }
+    public String getUrl()
+    {
+        return this.url;
+    }
     public void printPlace()
     {
         System.out.println(name);
         System.out.println(distance);
+    }
+    public String getPrice()
+    {
+        return this.price;
+    }
+    public String getSeating()
+    {
+        return this.seating;
+    }
+    public String getNoise()
+    {
+        return this.noise;
     }
     public String getName()
     {

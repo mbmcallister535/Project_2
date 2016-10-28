@@ -254,8 +254,5 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
         return mLongitude;
     }
 
-   // public int[] getFilterPrefs() {
-   //     return
-   // }
 
 }
