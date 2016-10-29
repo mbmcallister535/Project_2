@@ -39,6 +39,9 @@ public class RecentFragment extends ListFragment {
         j.sort_list_by_distance();
         ArrayList<Place> places = j.return_list();
 
+        if (places == null)
+            return inflater.inflate(R.layout.favorite_error, container,false);
+
         PlaceAdapter pAdapter = new PlaceAdapter(getActivity(), places);
         setListAdapter(pAdapter);
 
