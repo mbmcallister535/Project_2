@@ -10,9 +10,11 @@ import android.util.Log;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -36,10 +38,12 @@ public class JReader {
         user_longitude = u_long;
         String str_lat = String.valueOf(u_lat);
         String str_long = String.valueOf(u_long);
-
+        String photo_string = "";
         URL url;
+        String photo_url = "";
         String json_string = "";
         String json_data = "";
+        String html= "";
         try{
             //String str_user_latitude = Double.toString(u_lat);
             //String str_user_longitude = Double.toString(u_long);
@@ -62,10 +66,43 @@ public class JReader {
             for(int i=0; i < jsonArray.length(); i++){
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String name = jsonObject.optString("name").toString();
-                String rating = jsonObject.optString("rating").toString();
+                String rating = (jsonObject.optString("rating").toString());
                 String price_level = jsonObject.optString("price_level").toString();
                 JSONObject geometry = jsonObject.getJSONObject("geometry");
                 JSONObject location = geometry.getJSONObject("location");
+                System.out.println(jsonObject);
+
+                if (jsonObject.has("photos")) {
+                    JSONArray photo = jsonObject.optJSONArray("photos");
+                    System.out.println(photo);
+                    String photo_reference = "";
+                    int photo_size = photo.length();
+
+                    System.out.println("123" + photo_size);
+                    if(photo_size > 0) {
+                        System.out.println("123 we are here");
+                        System.out.println("123 "+jsonArray.optJSONObject(0));
+                        System.out.println("123 photos: "+photo.optJSONObject(0));
+                        JSONArray photoObject = jsonArray.optJSONArray(0);
+                        System.out.println("Photo Object: " + photoObject);
+                        html = photo.optJSONObject(0).optString("photo_reference").toString();
+                        //System.out.println("123 html: " + html);
+                        //Log.v("photo_ref",photo_reference);
+                        photo_url = "https://maps.googleapis.com/maps/api/place/photo?photoreference="+html+"&maxheight=400&key=AIzaSyBhnE7KFYA_ASATz_B94xYIT3Ubof0ubwY";
+                        /*System.out.println(photo_url);
+                        URL purl = new URL(photo_url);
+                        URLConnection pc = purl.openConnection();
+                        BufferedReader pin = new BufferedReader(new InputStreamReader(pc.getInputStream()));
+                        String photoLine;
+                        while ((photoLine = pin.readLine()) != null) {
+                            photo_string += photoLine;
+
+                        }*/
+                        //System.out.println("123 please work: " + photo_string);
+                    }
+                }
+
+        //String photo_reference = photo.optString("photo_reference").toString();
                 double lat = Double.parseDouble(location.optString("lat").toString());
                 double lng = Double.parseDouble(location.optString("lng").toString());
                 String open_now;
@@ -82,7 +119,7 @@ public class JReader {
                 }
                 //String open_now = hours.optString("open_now").toString();
                 json_data += "Node"+i+" : \n Name= "+ name +" \n lat= " +lat  + "\n lng= " + lng +"\n rating= " + rating +"\n open= "+open_now +"\n price= " + price_level + "\n";
-                Place p = new Place(name,10,lat,lng,price_level);
+                Place p = new Place(name,10,lat,lng,price_level,rating,photo_url);
                 this.places.add(p);
                 this.length_list++;
             }
@@ -114,29 +151,30 @@ public class JReader {
         {
             Place temp = places.get(i);
             double dist = temp.getDistance();
+            String checker = String.valueOf(dist);
             boolean wifi = temp.getWifi();
             String dining = temp.getDining();
             String seating = temp.getSeating();
             String price = temp.getPrice();
             String noise = temp.getNoise();
+            String switch_clause = String.valueOf(l);
+            int condition_counter = 0;
+            Log.v("location",switch_clause);
             switch (l){
                 case 0:
                     if(dist <= 5)
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        Log.v("location","here");
+                        condition_counter++;
                     }
                 case 1:
                     if(dist<=10){
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case 2:
                     if(dist <= 15)
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
-
+                        condition_counter++;
                     }
             }
             switch(w)
@@ -145,15 +183,13 @@ public class JReader {
                 case(0):
                     if(wifi == false)
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
 
                 case 1:
                     if(wifi == true)
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
 
 
@@ -164,19 +200,16 @@ public class JReader {
                 case 0:
                     if(dining == "coffee")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case 1:
                     if(dining == "food") {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case 2:
                     if(dining == "both")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
 
             }
@@ -185,20 +218,17 @@ public class JReader {
                 case 0:
                     if(dining == "indoor")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case 1:
                     if(dining == "outdoor")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case 2:
                     if(dining == "both")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
             }
             switch(p)
@@ -206,20 +236,17 @@ public class JReader {
                 case 0:
                     if(price == "$")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case(1):
                     if(price == "$$")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case(2):
                     if(price == "$$$")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
             }
             switch(n)
@@ -227,21 +254,28 @@ public class JReader {
                 case 0:
                     if(noise == "quiet")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case 1:
                     if(noise == "medium")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
                 case 2:
                     if(noise == "loud")
                     {
-                        filterPlaces.add(temp);
-                        length_filter++;
+                        condition_counter++;
                     }
+            }
+            if(condition_counter == 7)
+            {
+                String con_counter = String.valueOf(condition_counter);
+                Log.v("location", "hereyyyy");
+                Log.v("location",con_counter);
+                Log.v("location",temp.getName());
+                filterPlaces.add(temp);
+                length_filter++;
+
             }
 
 
@@ -294,6 +328,10 @@ public class JReader {
 
         }
     }
+    public int return_filter_length()
+    {
+        return this.length_filter;
+    }
     public void sort_filter_by_distance()
     {
         int j;
@@ -302,7 +340,7 @@ public class JReader {
         while(flag)
         {
             flag = false;
-            for(j = 0; j < length_list-1; j++)
+            for(j = 0; j < length_filter-1; j++)
             {
                 if(filterPlaces.get(j).getDistance() > filterPlaces.get(j+1).getDistance())
                 {

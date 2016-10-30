@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import java.util.ArrayList;
@@ -65,8 +66,12 @@ public class PlaceAdapter extends BaseAdapter{
             holder.titleView = (TextView) convertView.findViewById(R.id.nameView);
             holder.distanceView = (TextView) convertView.findViewById(R.id.distanceText);
             holder.placeCell = (RelativeLayout) convertView.findViewById(R.id.placeCell);
-
             ImageView fav_view = (ImageView) convertView.findViewById(R.id.empty_fav);
+            RatingBar rate_bar = (RatingBar) convertView.findViewById(R.id.ratingBar);
+            String rating = place.getRating();
+            Log.v("rating",rating);
+            float d_rating = Float.parseFloat(rating);
+            rate_bar.setRating(d_rating);
             fav_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
