@@ -19,6 +19,8 @@ public class Place {
     private String id;
     private String photo_url;
     private String url = "www.placeholder.com";
+    private boolean favorited = false;
+
     public Place(String n, double d,double lat,double lon,String p,String r,String photo,String identification)
     {
         id = identification;
@@ -43,6 +45,12 @@ public class Place {
         {
             price = "$$";
         }
+    }
+    public boolean isFavorited() {
+        return favorited;
+    }
+    public void setFavorited(boolean favorited) {
+        this.favorited = favorited;
     }
     public double getDistance() {
 
