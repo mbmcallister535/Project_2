@@ -1,5 +1,7 @@
 package com.example.joshualee.myapplication;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.util.Log;
 import android.widget.BaseAdapter;
 import android.content.Context;
@@ -8,6 +10,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -55,7 +58,7 @@ public class PlaceAdapter extends BaseAdapter{
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
 
-        Place place = places.get(position);
+        final Place place = places.get(position);
 
         if(convertView == null)
         {
@@ -68,6 +71,16 @@ public class PlaceAdapter extends BaseAdapter{
             holder.placeCell = (RelativeLayout) convertView.findViewById(R.id.placeCell);
             ImageView fav_view = (ImageView) convertView.findViewById(R.id.empty_fav);
             RatingBar rate_bar = (RatingBar) convertView.findViewById(R.id.ratingBar);
+            Button directions = (Button) convertView.findViewById(R.id.button);
+            directions.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String directions_url = "http://maps.google.com/maps?daddr="+place.getLatitude()+","+place.getLongitude();
+                    Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
+                            Uri.parse(directions_url));
+                    myContext.startActivity(intent);
+                }
+            });
             String rating = place.getRating();
             Log.v("rating",rating);
             float d_rating = Float.parseFloat(rating);
