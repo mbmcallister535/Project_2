@@ -5,7 +5,7 @@
     android:background="@color/background">
 
     <TextView
-        android:layout_width="150dp"
+        android:layout_width="match_parent"
         android:layout_height="125dp"
         android:id="@+id/textView2"
         android:text="OOPS!"
@@ -19,7 +19,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="25dp"
+        android:layout_height="wrap_content"
         android:id="@+id/textView3"
         android:layout_below="@+id/textView2"
         android:text= "You haven't saved any favorites yet."
@@ -30,7 +30,7 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true"
         android:text="Go to HOME to find your corner."

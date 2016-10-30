@@ -23,6 +23,7 @@ import android.widget.ImageButton;
 import android.widget.PopupWindow;
 import android.widget.RatingBar;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -44,8 +45,11 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
     int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION, k;
     double mLatitude = 41.600235;
     double mLongitude = -93.6513452;
+    TabLayout tabLayout;
+    PagerAdapter adapter;
     String[] filterPrefName = {"locationSeekBar", "wifiSeekBar",
             "diningSeekBar", "seatingSeekBar", "priceSeekBar", "noiseSeekBar"};
+    TextView header;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
             R.drawable.ic_favorite
         };
 
-        final TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout = (TabLayout) findViewById(R.id.tab_layout);
         for (int k=0; k < icons.length; k++) {
             tabLayout.addTab(tabLayout.newTab().setIcon(icons[k]));
         }
@@ -119,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
-        final PagerAdapter adapter = new PagerAdapter
+        adapter = new PagerAdapter
                 (getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
@@ -127,6 +131,17 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                header = (TextView) findViewById(R.id.header);
+                switch (tab.getPosition()) {
+                    case 0:
+                        header.setText("HOME");
+                        break;
+                    case 1:
+                        header.setText("RECENT");
+                        break;
+                    case 2:
+                        header.setText("FAVORITES");
+                }
             }
 
             @Override
@@ -239,7 +254,7 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
         popupWindow.setFocusable(true);
         popupWindow.setContentView(popupView);
         popupWindow.setOutsideTouchable(true);
-        int xOffset = -5;
+        int xOffset = -40;
         int yOffset = 210;
         popupWindow.showAsDropDown(popupView, xOffset, yOffset);
         seekbarLoc = (SeekBar) popupView.findViewById(R.id.locationSeekBar);
@@ -249,19 +264,18 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
         seekbarPri = (SeekBar) popupView.findViewById(R.id.priceSeekBar);
         seekbarNoi = (SeekBar) popupView.findViewById(R.id.noiseSeekBar);
 
-/*        popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener(){
+       popupWindow.setOnDismissListener(new PopupWindow.OnDismissListener(){
             @Override
             public void onDismiss() {
                 // Reload current fragment
                 Fragment frg = null;
-                frg = getSupportFragmentManager().findFragmentByTag("Your_Fragment_TAG");
+                frg = adapter.getItem(tabLayout.getSelectedTabPosition());
                 final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
                 ft.detach(frg);
                 ft.attach(frg);
                 ft.commit();
-
             }
-        });*/
+        });
     }
 
     public double getmLatitude() {

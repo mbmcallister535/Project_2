@@ -56,18 +56,26 @@
     <ImageButton
         android:layout_width="50dp"
         android:layout_height="24dp"
-        app:srcCompat="@drawable/ic_list_black_24px"
+        app:srcCompat="@drawable/ic_list_white_24dp"
         android:background="@color/colorPrimary"
         android:elevation="4dp"
         android:id="@+id/menu_button"
         android:layout_above="@+id/pager"
         android:layout_alignParentTop="true" />
 
-    <Switch
-        android:text="Switch"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/switch1" />
+        android:gravity="center"
+        android:text="HOME"
+        android:textSize="12pt"
+        android:textColor="@color/background"
+        android:elevation="4dp"
+        android:layout_above="@+id/pager"
+        android:layout_alignParentTop="true"
+        android:layout_toEndOf="@+id/menu_button"
+        android:id="@+id/header"/>
+
 
 </RelativeLayout>
 
