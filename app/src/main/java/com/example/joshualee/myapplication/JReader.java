@@ -67,7 +67,7 @@ public class JReader {
             for(int i=0; i < jsonArray.length(); i++){
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String name = jsonObject.optString("name").toString();
-                id = jsonObject.optString("id").toString();
+                id = jsonRootObject.optString("id").toString();
                 String rating = (jsonObject.optString("rating").toString());
                 String price_level = jsonObject.optString("price_level").toString();
                 JSONObject geometry = jsonObject.getJSONObject("geometry");

@@ -16,11 +16,10 @@ public class Place {
     private String seating = "both";
     private String noise = "quiet";
     private String rating;
-    private String id;
     private String photo_url;
+    private String id;
     private String url = "www.placeholder.com";
     private boolean favorited = false;
-
     public Place(String n, double d,double lat,double lon,String p,String r,String photo,String identification)
     {
         id = identification;
@@ -56,10 +55,10 @@ public class Place {
 
         return (double) Math.round(this.distance * 100.0)/100.0;
     }
-    public double getLatitude(){
+    public String getId(){return this.id; }
+    public double getLatitude() {
         return this.latitude;
     }
-    public String getId() { return this.id; }
     public double getLongitude(){
         return this.longitude;
     }
