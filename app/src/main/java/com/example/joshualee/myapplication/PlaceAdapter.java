@@ -6,7 +6,7 @@ import android.util.Log;
 import android.widget.BaseAdapter;
 import android.content.Context;
 import android.media.Image;
-//import android.support.v4.content.ContextCompat;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +69,7 @@ public class PlaceAdapter extends BaseAdapter{
             holder.titleView = (TextView) convertView.findViewById(R.id.nameView);
             holder.distanceView = (TextView) convertView.findViewById(R.id.distanceText);
             holder.placeCell = (RelativeLayout) convertView.findViewById(R.id.placeCell);
-            final ImageView fav_view = (ImageView) convertView.findViewById(R.id.empty_fav);
+            ImageView fav_view = (ImageView) convertView.findViewById(R.id.empty_fav);
             RatingBar rate_bar = (RatingBar) convertView.findViewById(R.id.ratingBar);
             Button directions = (Button) convertView.findViewById(R.id.button);
             directions.setOnClickListener(new View.OnClickListener() {
@@ -82,32 +82,17 @@ public class PlaceAdapter extends BaseAdapter{
                 }
             });
             String rating = place.getRating();
+            Log.v("rating",rating);
             float d_rating = Float.parseFloat(rating);
             rate_bar.setRating(d_rating);
-
-
             fav_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 //                    preferences = myContext.getSharedPreferences("PRODUCT_APP", 0);
 //                    preferences.edit().clear().commit();
-//                    String temp = String.valueOf(position);
-//                    Log.v("position", temp);
+                    sharedPreference.addFavorite(myContext, places.get(position));
+                    String temp = String.valueOf(position);
 //                    Log.v("name", sharedPreference.getFavorites(myContext).get(position).getName());
-                    if(places.get(position).isFavorited()){
-                        Log.v("favorited","first if");
-                        sharedPreference.removeFavorite(myContext, places.get(position));
-                        places.get(position).setFavorited(false);
-                        fav_view.setImageResource(R.drawable.unfavorited);
-                    }
-                    else{
-                        sharedPreference.addFavorite(myContext, places.get(position));
-                        sharedPreference.removeFavorite(myContext, places.get(position));
-                        places.get(position).setFavorited(true);
-                        fav_view.setImageResource(R.drawable.favorited);
-                    }
-
-
                 }
             });
 

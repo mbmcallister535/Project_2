@@ -17,12 +17,9 @@ public class Place {
     private String noise = "quiet";
     private String rating;
     private String photo_url;
-    private String id;
     private String url = "www.placeholder.com";
-    private boolean favorited = false;
-    public Place(String n, double d,double lat,double lon,String p,String r,String photo,String identification)
+    public Place(String n, double d,double lat,double lon,String p,String r,String photo)
     {
-        id = identification;
         latitude = lat;
         longitude = lon;
         name = n;
@@ -45,18 +42,11 @@ public class Place {
             price = "$$";
         }
     }
-    public boolean isFavorited() {
-        return favorited;
-    }
-    public void setFavorited(boolean favorited) {
-        this.favorited = favorited;
-    }
     public double getDistance() {
 
         return (double) Math.round(this.distance * 100.0)/100.0;
     }
-    public String getId(){return this.id; }
-    public double getLatitude() {
+    public double getLatitude(){
         return this.latitude;
     }
     public double getLongitude(){
