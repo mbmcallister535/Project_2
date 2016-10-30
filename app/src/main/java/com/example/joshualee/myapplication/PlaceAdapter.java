@@ -66,16 +66,27 @@ public class PlaceAdapter extends BaseAdapter{
             holder.distanceView = (TextView) convertView.findViewById(R.id.distanceText);
             holder.placeCell = (RelativeLayout) convertView.findViewById(R.id.placeCell);
 
-            ImageView fav_view = (ImageView) convertView.findViewById(R.id.empty_fav);
+            final ImageView fav_view = (ImageView) convertView.findViewById(R.id.empty_fav);
             fav_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 //                    preferences = myContext.getSharedPreferences("PRODUCT_APP", 0);
 //                    preferences.edit().clear().commit();
-                    sharedPreference.addFavorite(myContext, places.get(position));
-                    String temp = String.valueOf(position);
-                    Log.v("position", temp);
+//                    String temp = String.valueOf(position);
+//                    Log.v("position", temp);
 //                    Log.v("name", sharedPreference.getFavorites(myContext).get(position).getName());
+                    if(places.get(position).isFavorited()){
+                        sharedPreference.removeFavorite(myContext, places.get(position));
+                        places.get(position).setFavorited(false);
+                        fav_view.setImageResource(R.drawable.unfavorited);
+                    }
+                    else{
+                        sharedPreference.addFavorite(myContext, places.get(position));
+                        places.get(position).setFavorited(true);
+                        fav_view.setImageResource(R.drawable.favorited);
+                    }
+
+
                 }
             });
 

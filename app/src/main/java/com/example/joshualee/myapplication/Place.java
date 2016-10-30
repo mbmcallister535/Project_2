@@ -16,6 +16,16 @@ public class Place {
     private String seating = "both";
     private String noise = "quiet";
     private String url = "www.placeholder.com";
+    private boolean favorited = false;
+
+    public boolean isFavorited() {
+        return favorited;
+    }
+
+    public void setFavorited(boolean favorited) {
+        this.favorited = favorited;
+    }
+
     public Place(String n, double d,double lat,double lon,String p)
     {
         latitude = lat;
