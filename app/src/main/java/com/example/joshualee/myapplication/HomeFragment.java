@@ -90,7 +90,7 @@ public class HomeFragment extends ListFragment {
         j.sort_filter_by_distance();
         System.out.println("123 am I here???");
         places = j.return_filter();
-        places = j.return_list();
+       // places = j.return_list();
         PlaceAdapter pAdapter = new PlaceAdapter(getActivity(), places);
         setListAdapter(pAdapter);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
