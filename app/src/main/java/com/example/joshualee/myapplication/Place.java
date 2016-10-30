@@ -43,9 +43,8 @@ public class Place {
         }
     }
     public double getDistance() {
-        String str_distance = Double.toString(distance);
-        Log.v("Distance",str_distance);
-        return this.distance;
+
+        return (double) Math.round(this.distance * 100.0)/100.0;
     }
     public double getLatitude(){
         return this.latitude;

@@ -92,7 +92,6 @@ public class PlaceAdapter extends BaseAdapter{
 //                    preferences.edit().clear().commit();
                     sharedPreference.addFavorite(myContext, places.get(position));
                     String temp = String.valueOf(position);
-                    Log.v("position", temp);
 //                    Log.v("name", sharedPreference.getFavorites(myContext).get(position).getName());
                 }
             });
