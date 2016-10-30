@@ -40,6 +40,7 @@ public class JReader {
         String str_long = String.valueOf(u_long);
         String photo_string = "";
         URL url;
+        String id = "";
         String photo_url = "";
         String json_string = "";
         String json_data = "";
@@ -67,6 +68,7 @@ public class JReader {
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String name = jsonObject.optString("name").toString();
                 String rating = (jsonObject.optString("rating").toString());
+                id = jsonObject.optString("id").toString();
                 String price_level = jsonObject.optString("price_level").toString();
                 JSONObject geometry = jsonObject.getJSONObject("geometry");
                 JSONObject location = geometry.getJSONObject("location");
@@ -119,7 +121,7 @@ public class JReader {
                 }
                 //String open_now = hours.optString("open_now").toString();
                 json_data += "Node"+i+" : \n Name= "+ name +" \n lat= " +lat  + "\n lng= " + lng +"\n rating= " + rating +"\n open= "+open_now +"\n price= " + price_level + "\n";
-                Place p = new Place(name,10,lat,lng,price_level,rating,photo_url);
+                Place p = new Place(name,10,lat,lng,price_level,rating,photo_url,id);
                 this.places.add(p);
                 this.length_list++;
             }

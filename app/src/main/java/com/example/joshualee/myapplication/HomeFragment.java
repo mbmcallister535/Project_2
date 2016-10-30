@@ -94,14 +94,14 @@ public class HomeFragment extends ListFragment {
         PlaceAdapter pAdapter = new PlaceAdapter(getActivity(), places);
         setListAdapter(pAdapter);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        DownloadImageTask down = new DownloadImageTask(j,inflater,container);
-        down.execute();
+       // DownloadImageTask down = new DownloadImageTask(j,inflater,container);
+        //down.execute();
 
 
 
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
-    private class DownloadImageTask extends AsyncTask<String, Void, String> {
+   /* private class DownloadImageTask extends AsyncTask<String, Void, String> {
         ImageView bmImage;
         JReader j;
         LayoutInflater inflater;
@@ -142,5 +142,5 @@ public class HomeFragment extends ListFragment {
 
             //placeListView.setAdapter(pAdapter);
         }
-    }
+    }*/
 }
