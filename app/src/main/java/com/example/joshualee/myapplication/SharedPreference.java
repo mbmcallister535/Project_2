@@ -27,8 +27,7 @@ public class SharedPreference {
         SharedPreferences settings;
         Editor editor;
 
-        settings = context.getSharedPreferences(PREFS_NAME,
-                Context.MODE_PRIVATE);
+        settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         editor = settings.edit();
 
         Gson gson = new Gson();
