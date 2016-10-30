@@ -54,7 +54,7 @@ public class PlaceAdapter extends BaseAdapter{
     public View getView(final int position, View convertView, ViewGroup parent) {
         ViewHolder holder;
 
-        Place place = places.get(position);
+        final Place place = places.get(position);
 
         if(convertView == null)
         {
@@ -76,12 +76,14 @@ public class PlaceAdapter extends BaseAdapter{
 //                    Log.v("position", temp);
 //                    Log.v("name", sharedPreference.getFavorites(myContext).get(position).getName());
                     if(places.get(position).isFavorited()){
+                        Log.v("favorited","first if");
                         sharedPreference.removeFavorite(myContext, places.get(position));
                         places.get(position).setFavorited(false);
                         fav_view.setImageResource(R.drawable.unfavorited);
                     }
                     else{
                         sharedPreference.addFavorite(myContext, places.get(position));
+                        sharedPreference.removeFavorite(myContext, places.get(position));
                         places.get(position).setFavorited(true);
                         fav_view.setImageResource(R.drawable.favorited);
                     }
