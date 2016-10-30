@@ -66,10 +66,12 @@ public class PlaceAdapter extends BaseAdapter{
             holder.titleView = (TextView) convertView.findViewById(R.id.nameView);
             holder.distanceView = (TextView) convertView.findViewById(R.id.distanceText);
             holder.placeCell = (RelativeLayout) convertView.findViewById(R.id.placeCell);
-
-<<<<<<< HEAD
-=======
             ImageView fav_view = (ImageView) convertView.findViewById(R.id.empty_fav);
+            RatingBar rate_bar = (RatingBar) convertView.findViewById(R.id.ratingBar);
+            String rating = place.getRating();
+            Log.v("rating",rating);
+            float d_rating = Float.parseFloat(rating);
+            rate_bar.setRating(d_rating);
             fav_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -81,7 +83,6 @@ public class PlaceAdapter extends BaseAdapter{
 //                    Log.v("name", sharedPreference.getFavorites(myContext).get(position).getName());
                 }
             });
->>>>>>> e2d88c44270e45a95ea1cf1bbb5531ff63bbe3a3
 
             convertView.setTag(holder);
         }

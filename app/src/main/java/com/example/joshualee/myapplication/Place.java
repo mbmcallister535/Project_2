@@ -15,12 +15,23 @@ public class Place {
     private String price;
     private String seating = "both";
     private String noise = "quiet";
+    private String rating;
+    private String photo_url;
     private String url = "www.placeholder.com";
-    public Place(String n, double d,double lat,double lon,String p)
+    public Place(String n, double d,double lat,double lon,String p,String r,String photo)
     {
         latitude = lat;
         longitude = lon;
         name = n;
+        photo_url = photo;
+        if(r.length() > 0)
+        {
+            rating = r;
+        }
+        else
+        {
+            rating = "0.0";
+        }
         distance = d;
         if(p!="")
         {
@@ -53,6 +64,14 @@ public class Place {
     public boolean getWifi()
     {
         return this.wifi;
+    }
+    public String getPhotoUrl()
+    {
+        return this.photo_url;
+    }
+    public String getRating ()
+    {
+        return this.rating;
     }
     public String getDining()
     {
