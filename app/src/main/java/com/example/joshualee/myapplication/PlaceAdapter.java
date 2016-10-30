@@ -25,7 +25,7 @@ import static java.lang.System.out;
  */
 public class PlaceAdapter extends BaseAdapter{
     private Context myContext;
-    private ArrayList<Place> places;
+    ArrayList<Place> places;
     SharedPreference sharedPreference;
     SharedPreferences preferences;
 

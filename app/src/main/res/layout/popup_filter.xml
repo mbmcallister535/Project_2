@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/popupBackground">
+    android:background="@color/background">
 
     <TextView
         android:text="Dining"
@@ -109,15 +109,15 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:id="@+id/diningSeekBar"
-        android:max="1"
-        android:progress="0"
+        android:max="2"
+        android:progress="2"
         android:layout_below="@+id/wifi"
         android:layout_toEndOf="@+id/dining" />
 
     <TextView
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:id="@+id/label1"
+        android:id="@+id/labelLoc1"
         android:text="5 Miles"
         android:textSize="4pt"
         android:layout_toEndOf="@+id/location"
@@ -126,7 +126,7 @@
     <TextView
         android:layout_width="150dp"
         android:layout_height="50dp"
-        android:id="@+id/label2"
+        android:id="@+id/labelLoc2"
         android:text="10 Miles"
         android:textSize="4pt"
         android:layout_toEndOf="@+id/location"
@@ -136,12 +136,163 @@
     <TextView
         android:layout_width="160dp"
         android:layout_height="50dp"
-        android:id="@+id/label3"
-        android:text="10 Miles"
+        android:id="@+id/labelLoc3"
+        android:text="15 Miles"
         android:textSize="4pt"
         android:layout_toEndOf="@+id/location"
         android:paddingTop="30dp"
         android:paddingLeft="120dp"/>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/labelWif1"
+        android:text="No"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/wifi"
+        android:layout_below="@+id/locationSeekBar"
+        android:paddingTop="30dp"
+        android:paddingLeft="12dp"/>
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:id="@+id/labelWif2"
+        android:text="Yes"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/wifi"
+        android:layout_below="@+id/locationSeekBar"
+        android:paddingTop="30dp"
+        android:paddingLeft="120dp"/>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/labelDin1"
+        android:text="Coffee"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/dining"
+        android:layout_below="@+id/wifiSeekBar"
+        android:paddingTop="30dp"/>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/labelDin2"
+        android:text="Food"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/dining"
+        android:layout_below="@+id/wifiSeekBar"
+        android:paddingTop="30dp"
+        android:paddingLeft="65dp"/>
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:id="@+id/labelDin3"
+        android:text="Both"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/dining"
+        android:layout_below="@+id/wifiSeekBar"
+        android:paddingTop="30dp"
+        android:paddingLeft="125dp"/>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/labelSea1"
+        android:text="Indoor"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/seating"
+        android:layout_below="@+id/diningSeekBar"
+        android:paddingTop="30dp"/>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/labelSea2"
+        android:text="Outdoor"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/seating"
+        android:layout_below="@+id/diningSeekBar"
+        android:paddingTop="30dp"
+        android:paddingLeft="60dp"/>
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:id="@+id/labelSea3"
+        android:text="Both"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/seating"
+        android:layout_below="@+id/diningSeekBar"
+        android:paddingTop="30dp"
+        android:paddingLeft="125dp"/>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/labelPri1"
+        android:text="$"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/price"
+        android:layout_below="@+id/seatingSeekBar"
+        android:paddingTop="30dp"
+        android:paddingLeft="13dp"/>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/labelPri2"
+        android:text="$$"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/price"
+        android:layout_below="@+id/seatingSeekBar"
+        android:paddingTop="30dp"
+        android:paddingLeft="70dp"/>
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:id="@+id/labelPri3"
+        android:text="$$$"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/price"
+        android:layout_below="@+id/seatingSeekBar"
+        android:paddingTop="30dp"
+        android:paddingLeft="127dp"/>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/labelNoi1"
+        android:text="Quiet"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/noise"
+        android:layout_below="@+id/priceSeekBar"
+        android:paddingTop="30dp"/>
+
+    <TextView
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:id="@+id/labelNoi2"
+        android:text="Chatter"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/noise"
+        android:layout_below="@+id/priceSeekBar"
+        android:paddingTop="30dp"
+        android:paddingLeft="60dp"/>
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:id="@+id/labelNoi3"
+        android:text="Loud"
+        android:textSize="4pt"
+        android:layout_toEndOf="@+id/noise"
+        android:layout_below="@+id/priceSeekBar"
+        android:paddingTop="30dp"
+        android:paddingLeft="125dp"/>
 
     <TextView
         android:text="Location"

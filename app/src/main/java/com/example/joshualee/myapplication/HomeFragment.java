@@ -51,11 +51,27 @@ public class HomeFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        int location, wifi, dining, seating, price, noise;
 
+       /* Place place0 = new Place("m",10.0,10.0,10.0);
+        place0.setDistance(1000);
+        place0.setName("Michael's House");
+
+        Place place1 = new Place("m",10.0,10.0,10.0);
+        place1.setDistance(5000);
+        place1.setName("Fariz's House");
+
+        Place place2 = new Place("m",10.0,10.0,10.0);
+        place2.setDistance(10000);
+        place2.setName("Josh's House");
+
+        final Place[] places = new Place[3];
+        places[0] = place0;
+        places[1] = place1;
+        places[2] = place2;
+        */
+        int location, wifi, dining, seating, price, noise;
         SharedPreferences filter = getActivity().getSharedPreferences("filterPrefs",0);
         location = filter.getInt("locationSeekBar", 0);
-        //Log.v("Location", Integer.toString(location));
         wifi = filter.getInt("wifiSeekBar", 0);
         dining = filter.getInt("diningSeekBar", 0);
         seating = filter.getInt("seatingSeekBar", 0);

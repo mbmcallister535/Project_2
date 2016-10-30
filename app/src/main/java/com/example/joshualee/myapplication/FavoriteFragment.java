@@ -23,6 +23,9 @@ public class FavoriteFragment extends ListFragment {
 
         places = sharedPreference.getFavorites(getActivity());
 
+        if (places == null)
+            return inflater.inflate(R.layout.favorite_error, container,false);
+
         PlaceAdapter pAdapter = new PlaceAdapter(getActivity(), places);
         setListAdapter(pAdapter);
 
