@@ -61,6 +61,7 @@ public class HomeFragment extends ListFragment {
         places[1] = place1;
         places[2] = place2;
         */
+
         int location, wifi, dining, seating, price, noise;
         SharedPreferences filter = getActivity().getSharedPreferences("filterPrefs",0);
         location = filter.getInt("locationSeekBar", 0);
