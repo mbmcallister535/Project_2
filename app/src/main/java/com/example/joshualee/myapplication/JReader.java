@@ -49,7 +49,7 @@ public class JReader {
             Log.v("Jreader", "we are here");
             //String str_user_latitude = Double.toString(u_lat);
             //String str_user_longitude = Double.toString(u_long);
-            url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+str_lat+","+str_long+"&radius=50000&type=cafe&key=AIzaSyBnNX3AmkjNWFlsmLs6ApKVuXVOhjLjG0E");
+            url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+str_lat+","+str_long+"&radius=50000&type=cafe&key=AIzaSyB65gfarp2f8JQ5XykeRJdFTdw9DC6smrk");
             URLConnection yc = url.openConnection();
             Log.v("Jreader", "but we are not here");
             BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
@@ -158,6 +158,7 @@ public class JReader {
             String noise = temp.getNoise();
             String switch_clause = String.valueOf(l);
             int condition_counter = 0;
+            Log.v("location",Integer.toString(l));
             switch (l){
                 case 0:
                     if(dist <= 5)
@@ -168,10 +169,11 @@ public class JReader {
                 case 1:
                     if(dist<=10){
                         Log.v("location", "more than 10 miles");
+                        Log.v("location",Double.toString(places.get(i).getDistance()));
+                        Log.v("Location",places.get(i).getName());
                         condition_counter++;
                     }
                     break;
-
                 case 2:
                     if(dist <= 15)
                     {
@@ -179,118 +181,117 @@ public class JReader {
                     }
                     break;
             }
-//            switch(w)
-//            {
-//
-//                case(0):
-//                    if(wifi == false)
-//                    {
-//                        condition_counter++;
-//                    }
-//                    break;
-//
-//                case 1:
-//                    if(wifi == true)
-//                    {
-//                        condition_counter++;
-//                    }
-//                    break;
-//            }
-//            switch(d)
-//            {
-//                case 0:
-//                    if(dining == "coffee")
-//                    {
-//                        condition_counter++;
-//                    }
-//                    break;
-//                case 1:
-//                    if(dining == "food") {
-//                        condition_counter++;
-//                    }
-//                    break;
-//                case 2:
-//                    if(dining == "both")
-//                    {
-//                        condition_counter++;
-//                    }
-//                    break;
-//
-//            }
-//            switch(s)
-//            {
-//                case 0:
-//                    if(dining == "indoor")
-//                    {
-//                        condition_counter++;
-//                    }
-//                    break;
-//                case 1:
-//                    if(dining == "outdoor")
-//                    {
-//                        condition_counter++;
-//                    }
-//                    break;
-//                case 2:
-//                    if(dining == "both")
-//                    {
-//                        condition_counter++;
-//                    }
-//                    break;
-//            }
-////            switch(p)
-////            {
-////                case 0:
-////                    if(price == "$")
-////                    {
-////                        condition_counter++;
-////                    }
-////                    break;
-////                case(1):
-////                    if(price == "$$")
-////                    {
-////                        condition_counter++;
-////                    }
-////                    break;
-////                case(2):
-////                    if(price == "$$$")
-////                    {
-////                        condition_counter++;
-////                    }
-////                    break;
-////            }
-//            switch(n)
-//            {
-//                case 0:
-//                    if(noise == "quiet")
-//                    {
-//                        condition_counter++;
-//                    }
-//                    break;
-//                case 1:
-//                    if(noise == "medium")
-//                    {
-//                        condition_counter++;
-//                    }
-//                    break;
-//                case 2:
-//                    if(noise == "loud")
-//                    {
-//                        condition_counter++;
-//                    }
-//                    break;
-//            }
-
-            if(condition_counter == 1)
+            Log.v("Location",Integer.toString(condition_counter));
+            Log.v("Location","here");
+              switch(w)
             {
-                String con_counter = String.valueOf(condition_counter);
-                filterPlaces.add(temp);
-                length_filter++;
+                case(0):
+                    if(wifi == false)
+                    {
+                        condition_counter++;
+                    }
+                    break;
+                case 1:
+                    if(wifi == true)
+                    {
 
+                        condition_counter++;
+                    }
+                    break;
+            }
+            switch(d)
+        {
+            case 0:
+                if(dining == "coffee")
+                {
+                    condition_counter++;
+                }
+                break;
+            case 1:
+                if(dining == "food") {
+                    condition_counter++;
+                }
+                break;
+            case 2:
+                if(dining == "both")
+                {
+                    condition_counter++;
+                }
+                break;
+
+        }
+            switch(s)
+            {
+                case 0:
+                    if(dining.equals("indoor"))
+                    {
+                        condition_counter++;
+                    }
+                    break;
+                case 1:
+                    if(dining.equals("outdoor"))
+                    {
+                        condition_counter++;
+                    }
+                    break;
+                case 2:
+                    if(dining.equals("both"))
+                    {
+                        condition_counter++;
+                    }
+                    break;
+            }
+            switch(p)
+            {
+                case 0:
+                    if(price.equals("$"))
+                    {
+                        condition_counter++;
+                    }
+                    break;
+                case(1):
+                    if(price.equals("$$"))
+                    {
+                        condition_counter++;
+                    }
+                    break;
+                case(2):
+                    if(price.equals("$$$"))
+                    {
+                        condition_counter++;
+                    }
+                    break;
+            }
+            switch(n)
+            {
+                case 0:
+                    if(noise.equals ("quiet"))
+                    {
+                        condition_counter++;
+                    }
+                    break;
+                case 1:
+                    if(noise.equals("medium"))
+                    {
+                        condition_counter++;
+                    }
+                    break;
+                case 2:
+                    if(noise.equals("loud"))
+                    {
+                        condition_counter++;
+                    }
+                    break;
             }
 
-
-
+            if(condition_counter == 6)
+            {
+                String con_counter = String.valueOf(condition_counter);
+                Log.v("Location","---------------------");
+                Log.v("Location",places.get(i).getName());
+                filterPlaces.add(places.get(i));
+                length_filter++;
+            }
         }
     }
 
@@ -314,7 +315,12 @@ public class JReader {
     {
         return places;
     }
-    public ArrayList<Place> return_filter() {return filterPlaces; }
+    public ArrayList<Place> return_filter() {
+        if (filterPlaces.size() == 0)
+            return null;
+        else
+            return filterPlaces;
+    }
     //Bubble sort found on http://mathbits.com/MathBits/Java/arrays/Bubble.htm
     public void sort_list_by_distance()
     {

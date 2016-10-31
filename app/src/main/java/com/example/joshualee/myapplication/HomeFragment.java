@@ -70,9 +70,9 @@ public class HomeFragment extends ListFragment {
         j.set_filter_list(location,wifi,dining,seating,price,noise);
         j.sort_filter_by_distance();
         places = j.return_filter();
-        for(int i = 0; i < places.size(); i++)
+        if (places == null)
         {
-            Log.v("Hello from here",places.get(i).getName());
+            return inflater.inflate(R.layout.home_error, container,false);
         }
         PlaceAdapter pAdapter = new PlaceAdapter(getActivity(), places);
         setListAdapter(pAdapter);
