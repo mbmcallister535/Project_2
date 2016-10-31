@@ -3,6 +3,7 @@ package com.example.joshualee.myapplication;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.ListFragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,8 +40,9 @@ public class RecentFragment extends ListFragment {
         j.sort_list_by_distance();
         ArrayList<Place> places = j.return_list();
 
-        if (places == null)
+        if (places == null){
             return inflater.inflate(R.layout.favorite_error, container,false);
+        }
 
         PlaceAdapter pAdapter = new PlaceAdapter(getActivity(), places);
         setListAdapter(pAdapter);

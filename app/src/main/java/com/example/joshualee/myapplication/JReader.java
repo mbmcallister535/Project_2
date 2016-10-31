@@ -48,7 +48,7 @@ public class JReader {
         try{
             //String str_user_latitude = Double.toString(u_lat);
             //String str_user_longitude = Double.toString(u_long);
-            url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+str_lat+","+str_long+"&radius=50000&type=cafe&key=AIzaSyBhnE7KFYA_ASATz_B94xYIT3Ubof0ubwY");
+            url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+str_lat+","+str_long+"&radius=50000&type=cafe&key=AIzaSyBnNX3AmkjNWFlsmLs6ApKVuXVOhjLjG0E");
             URLConnection yc = url.openConnection();
             Log.v("hi", "is it even here");
             BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
@@ -169,15 +169,20 @@ public class JReader {
                         Log.v("location","here");
                         condition_counter++;
                     }
+                    break;
                 case 1:
                     if(dist<=10){
+                        Log.v("location", "more than 10 miles");
                         condition_counter++;
                     }
+                    break;
+
                 case 2:
                     if(dist <= 15)
                     {
                         condition_counter++;
                     }
+                    break;
             }
             switch(w)
             {
@@ -187,15 +192,14 @@ public class JReader {
                     {
                         condition_counter++;
                     }
+                    break;
 
                 case 1:
                     if(wifi == true)
                     {
                         condition_counter++;
                     }
-
-
-
+                    break;
             }
             switch(d)
             {
@@ -204,15 +208,18 @@ public class JReader {
                     {
                         condition_counter++;
                     }
+                    break;
                 case 1:
                     if(dining == "food") {
                         condition_counter++;
                     }
+                    break;
                 case 2:
                     if(dining == "both")
                     {
                         condition_counter++;
                     }
+                    break;
 
             }
             switch(s)
@@ -222,16 +229,19 @@ public class JReader {
                     {
                         condition_counter++;
                     }
+                    break;
                 case 1:
                     if(dining == "outdoor")
                     {
                         condition_counter++;
                     }
+                    break;
                 case 2:
                     if(dining == "both")
                     {
                         condition_counter++;
                     }
+                    break;
             }
             switch(p)
             {
@@ -240,16 +250,19 @@ public class JReader {
                     {
                         condition_counter++;
                     }
+                    break;
                 case(1):
                     if(price == "$$")
                     {
                         condition_counter++;
                     }
+                    break;
                 case(2):
                     if(price == "$$$")
                     {
                         condition_counter++;
                     }
+                    break;
             }
             switch(n)
             {
@@ -258,18 +271,22 @@ public class JReader {
                     {
                         condition_counter++;
                     }
+                    break;
                 case 1:
                     if(noise == "medium")
                     {
                         condition_counter++;
                     }
+                    break;
                 case 2:
                     if(noise == "loud")
                     {
                         condition_counter++;
                     }
+                    break;
             }
-            if(condition_counter == 7)
+
+            if(condition_counter == 6)
             {
                 String con_counter = String.valueOf(condition_counter);
                 Log.v("location", "hereyyyy");

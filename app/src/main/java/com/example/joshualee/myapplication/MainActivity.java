@@ -39,8 +39,6 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
     SeekBar seekbarLoc, seekbarWif, seekbarDin, seekbarSea, seekbarPri, seekbarNoi;
     protected GoogleApiClient mGoogleApiClient;
     private SharedPreferences filter;
-
-
     Location mLastLocation;
     int MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION, k;
     double mLatitude = 41.600235;
@@ -50,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
     String[] filterPrefName = {"locationSeekBar", "wifiSeekBar",
             "diningSeekBar", "seatingSeekBar", "priceSeekBar", "noiseSeekBar"};
     TextView header;
+    ViewPager viewPager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-        final ViewPager viewPager = (ViewPager) findViewById(R.id.pager);
+        viewPager = (ViewPager) findViewById(R.id.pager);
         adapter = new PagerAdapter
                 (getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(adapter);
@@ -274,6 +273,8 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
                 ft.detach(frg);
                 ft.attach(frg);
                 ft.commit();
+                adapter.notifyDataSetChanged();
+
             }
         });
     }

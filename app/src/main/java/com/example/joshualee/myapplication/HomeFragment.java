@@ -73,12 +73,12 @@ public class HomeFragment extends ListFragment {
         int location, wifi, dining, seating, price, noise;
         SharedPreferences filter = getActivity().getSharedPreferences("filterPrefs",0);
         location = filter.getInt("locationSeekBar", 0);
-        wifi = filter.getInt("wifiSeekBar", 0);
-        dining = filter.getInt("diningSeekBar", 0);
+        wifi = filter.getInt("wifiSeekBar", 1);
+        dining = filter.getInt("diningSeekBar", 2);
         seating = filter.getInt("seatingSeekBar", 0);
         price = filter.getInt("priceSeekBar", 0);
         noise = filter.getInt("noiseSeekBar", 0);
-
+        Log.v("Wifi is what number", Integer.toString(wifi));
 
 
         double user_latitude = ((MainActivity)getActivity()).getmLatitude();
@@ -90,7 +90,11 @@ public class HomeFragment extends ListFragment {
         j.sort_filter_by_distance();
         System.out.println("123 am I here???");
         places = j.return_filter();
-       // places = j.return_list();
+        //places = j.return_list();
+
+        if (places == null)
+            return inflater.inflate(R.layout.recent_error, container, false);
+
         PlaceAdapter pAdapter = new PlaceAdapter(getActivity(), places);
         setListAdapter(pAdapter);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
