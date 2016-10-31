@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import android.widget.Toast;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import com.google.gson.Gson;
+
 
 import static java.lang.System.out;
 
@@ -70,8 +72,17 @@ public class PlaceAdapter extends BaseAdapter{
             holder.distanceView = (TextView) convertView.findViewById(R.id.distanceText);
             holder.placeCell = (RelativeLayout) convertView.findViewById(R.id.placeCell);
             ImageView fav_view = (ImageView) convertView.findViewById(R.id.empty_fav);
+            ImageView banner_image = (ImageView) convertView.findViewById(R.id.bannerView);
             RatingBar rate_bar = (RatingBar) convertView.findViewById(R.id.ratingBar);
             Button directions = (Button) convertView.findViewById(R.id.button);
+            banner_image.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(v.getContext(), ActivityItem.class);
+                    intent.putExtra("Place", new Gson().toJson(place));
+                    v.getContext().startActivity(intent);
+                }
+            });
             directions.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

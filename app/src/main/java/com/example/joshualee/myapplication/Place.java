@@ -32,7 +32,7 @@ public class Place {
         }
         else
         {
-            rating = "0.0";
+            rating = "3.0";
         }
         distance = d;
         if(p!="")
