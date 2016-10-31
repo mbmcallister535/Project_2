@@ -217,6 +217,8 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
         }
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
         if (mLastLocation != null) {
+            // This will get the latitude and longitude of the device. If location is null, the latitude
+            // and longitude has been declared with set location.
             mLatitude = mLastLocation.getLatitude();
             mLongitude = mLastLocation.getLongitude();
             Toast.makeText(this, "Location Detected", Toast.LENGTH_SHORT).show();
