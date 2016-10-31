@@ -185,34 +185,22 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
      */
     @Override
     public void onConnected(Bundle connectionHint) {
-        // Provides a simple way of getting a device's location and is well suited for
-        // applications that do not require a fine-grained location and that do not need location
-        // updates. Gets the best and most recent location currently available, which may be null
-        // in rare cases when a location is not available.
-        // Here, thisActivity is the current activity
+
         if (ContextCompat.checkSelfPermission(MainActivity.this,
                 Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
 
-            // Should we show an explanation?
+            // used if user wants to see explanation for accessing location
             if (ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,
                     Manifest.permission.ACCESS_FINE_LOCATION)) {
 
-                // Show an expanation to the user *asynchronously* -- don't block
-                // this thread waiting for the user's response! After the user
-                // sees the explanation, try again to request the permission.
-
             } else {
 
-                // No explanation needed, we can request the permission.
-
+                // Get permission for accessing location
                 ActivityCompat.requestPermissions(MainActivity.this,
                         new String[]{Manifest.permission.ACCESS_FINE_LOCATION},
                         MY_PERMISSIONS_REQUEST_ACCESS_FINE_LOCATION);
 
-                // MY_PERMISSIONS_REQUEST_READ_CONTACTS is an
-                // app-defined int constant. The callback method gets the
-                // result of the request.
             }
         }
         mLastLocation = LocationServices.FusedLocationApi.getLastLocation(mGoogleApiClient);
@@ -243,7 +231,7 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
         mGoogleApiClient.connect();
     }
 
-
+    // Creates the popup window for the filter menu
     public void popupWindowCreate(){
         LayoutInflater layoutInflater = getLayoutInflater();
         View popupView = layoutInflater.inflate(R.layout.popup_filter, null);
@@ -281,10 +269,12 @@ public class MainActivity extends AppCompatActivity implements ConnectionCallbac
         });
     }
 
+    // accessor for user's latitude
     public double getmLatitude() {
         return mLatitude;
     }
 
+    // accessor for user's longitude
     public double getmLongitude() {
         return mLongitude;
     }
