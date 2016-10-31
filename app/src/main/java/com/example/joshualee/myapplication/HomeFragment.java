@@ -74,8 +74,6 @@ public class HomeFragment extends ListFragment {
         {
             Log.v("Hello from here",places.get(i).getName());
         }
-
-
         PlaceAdapter pAdapter = new PlaceAdapter(getActivity(), places);
         setListAdapter(pAdapter);
         View view = inflater.inflate(R.layout.fragment_home, container, false);
