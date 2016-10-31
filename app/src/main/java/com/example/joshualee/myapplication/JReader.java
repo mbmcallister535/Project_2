@@ -32,8 +32,7 @@ public class JReader {
     public JReader(double u_lat, double u_long)
     {
 
-        Log.v("Hi","THIS IS NEW");
-        Log.v("hi", "Am I in here");
+
         user_latitude = u_lat;
         user_longitude = u_long;
         String str_lat = String.valueOf(u_lat);
@@ -45,18 +44,19 @@ public class JReader {
         String json_string = "";
         String json_data = "";
         String html= "";
+        Log.v("Jreader","constructor");
         try{
+            Log.v("Jreader", "we are here");
             //String str_user_latitude = Double.toString(u_lat);
             //String str_user_longitude = Double.toString(u_long);
             url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+str_lat+","+str_long+"&radius=50000&type=cafe&key=AIzaSyBnNX3AmkjNWFlsmLs6ApKVuXVOhjLjG0E");
             URLConnection yc = url.openConnection();
-            Log.v("hi", "is it even here");
+            Log.v("Jreader", "but we are not here");
             BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
                 json_string += inputLine;
             }
-            Log.v("hi","Got through here");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -88,8 +88,6 @@ public class JReader {
                         JSONArray photoObject = jsonArray.optJSONArray(0);
                         System.out.println("Photo Object: " + photoObject);
                         html = photo.optJSONObject(0).optString("photo_reference").toString();
-                        //System.out.println("123 html: " + html);
-                        //Log.v("photo_ref",photo_reference);
                         photo_url = "https://maps.googleapis.com/maps/api/place/photo?photoreference="+html+"&maxheight=400&key=AIzaSyBhnE7KFYA_ASATz_B94xYIT3Ubof0ubwY";
                         /*System.out.println(photo_url);
                         URL purl = new URL(photo_url);
@@ -127,11 +125,10 @@ public class JReader {
             }
 
         } catch (JSONException e) {
-            System.out.println("UH OH");
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        Log.v("hi","end of constructor");
+
     }
     private double deg2rad(double deg) {
         return (deg * Math.PI / 180.0);
@@ -161,12 +158,10 @@ public class JReader {
             String noise = temp.getNoise();
             String switch_clause = String.valueOf(l);
             int condition_counter = 0;
-            Log.v("location",switch_clause);
             switch (l){
                 case 0:
                     if(dist <= 5)
                     {
-                        Log.v("location","here");
                         condition_counter++;
                     }
                     break;
@@ -289,9 +284,6 @@ public class JReader {
             if(condition_counter == 6)
             {
                 String con_counter = String.valueOf(condition_counter);
-                Log.v("location", "hereyyyy");
-                Log.v("location",con_counter);
-                Log.v("location",temp.getName());
                 filterPlaces.add(temp);
                 length_filter++;
 
@@ -299,6 +291,11 @@ public class JReader {
 
 
 
+        }
+        Log.v("filter","----------------------------");
+        for(int i = 0; i < filterPlaces.size(); i++)
+        {
+            Log.v("filter",filterPlaces.get(i).getName());
         }
     }
     public void set_distances()
@@ -315,8 +312,6 @@ public class JReader {
             temp.setDistance(dist);
             places.set(i, temp);
             String str = Double.toString(dist);
-            Log.v("Hi", str);
-
         }
     }
     public ArrayList<Place> return_list()

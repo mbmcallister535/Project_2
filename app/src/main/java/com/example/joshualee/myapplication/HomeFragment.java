@@ -51,25 +51,6 @@ public class HomeFragment extends ListFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
-       /* Place place0 = new Place("m",10.0,10.0,10.0);
-        place0.setDistance(1000);
-        place0.setName("Michael's House");
-
-        Place place1 = new Place("m",10.0,10.0,10.0);
-        place1.setDistance(5000);
-        place1.setName("Fariz's House");
-
-        Place place2 = new Place("m",10.0,10.0,10.0);
-        place2.setDistance(10000);
-        place2.setName("Josh's House");
-
-        final Place[] places = new Place[3];
-        places[0] = place0;
-        places[1] = place1;
-        places[2] = place2;
-        */
-
         int location, wifi, dining, seating, price, noise;
         SharedPreferences filter = getActivity().getSharedPreferences("filterPrefs",0);
         location = filter.getInt("locationSeekBar", 0);
@@ -88,12 +69,12 @@ public class HomeFragment extends ListFragment {
         j.sort_list_by_distance();
         j.set_filter_list(location,wifi,dining,seating,price,noise);
         j.sort_filter_by_distance();
-        System.out.println("123 am I here???");
         places = j.return_filter();
-        //places = j.return_list();
+        for(int i = 0; i < places.size(); i++)
+        {
+            Log.v("Hello from here",places.get(i).getName());
+        }
 
-        if (places == null)
-            return inflater.inflate(R.layout.recent_error, container, false);
 
         PlaceAdapter pAdapter = new PlaceAdapter(getActivity(), places);
         setListAdapter(pAdapter);
