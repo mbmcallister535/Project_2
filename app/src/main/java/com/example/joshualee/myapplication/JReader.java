@@ -49,7 +49,7 @@ public class JReader {
             Log.v("Jreader", "we are here");
             //String str_user_latitude = Double.toString(u_lat);
             //String str_user_longitude = Double.toString(u_long);
-            url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+str_lat+","+str_long+"&radius=50000&type=cafe&key=AIzaSyBnNX3AmkjNWFlsmLs6ApKVuXVOhjLjG0E");
+            url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+str_lat+","+str_long+"&radius=50000&type=cafe&key=AIzaSyB65gfarp2f8JQ5XykeRJdFTdw9DC6smrk");
             URLConnection yc = url.openConnection();
             Log.v("Jreader", "but we are not here");
             BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));

@@ -12,6 +12,7 @@ import com.google.gson.Gson;
 
 /**
  * Created by joshualee on 10/26/16.
+ * I took this code from this site http://androidopentutorials.com/android-how-to-store-list-of-values-in-sharedpreferences/
  */
 
 public class SharedPreference {
