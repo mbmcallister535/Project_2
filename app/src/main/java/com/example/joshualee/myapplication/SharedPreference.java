@@ -7,6 +7,7 @@ import java.util.List;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.util.Log;
 //import com.androidopentutorials.spfavorites.beans.Product;
 import com.google.gson.Gson;
 
@@ -44,6 +45,7 @@ public class SharedPreference {
         List<Place> favorites = getFavorites(context);
         if (favorites == null)
             favorites = new ArrayList<Place>();
+        Log.v("Position",place.getName());
         favorites.add(place);
         saveFavorites(context, favorites);
     }
