@@ -83,11 +83,6 @@ public class Place {
     {
         return this.url;
     }
-    public void printPlace()
-    {
-        System.out.println(name);
-        System.out.println(distance);
-    }
     public String getPrice()
     {
         return this.price;

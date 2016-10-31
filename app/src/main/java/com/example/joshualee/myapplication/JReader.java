@@ -126,13 +126,6 @@ public class JReader {
         return (rad * 180 / Math.PI);
     }
     //Distance Formula found on http://www.geodatasource.com/developers/java
-    public void print_data()
-    {
-        for(int i = 0; i < length_list; i++)
-        {
-            places.get(i).printPlace();
-        }
-    }
     public void set_filter_list(int l, int w, int d, int s, int p, int n )
     {
         for(int i = 0; i < length_list; i++)

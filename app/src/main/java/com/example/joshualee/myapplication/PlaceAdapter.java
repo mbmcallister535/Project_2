@@ -19,11 +19,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import android.widget.Toast;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import com.google.gson.Gson;
 
-
-import static java.lang.System.out;
 
 /**
  * Created by joshualee on 10/19/16.
@@ -105,19 +102,10 @@ public class PlaceAdapter extends BaseAdapter{
                     ArrayList<Place> fav_places = new ArrayList<Place>();
                     fav_places = sharedPreference.getFavorites(myContext);
                     preferences.edit().clear().commit();
-                    Log.v("Position",position);
                     boolean infavorites = false;
                     if(fav_places!=null){
                         for(int i=0; i<fav_places.size(); i++){
-                            Log.v("name", fav_places.get(i).getName());
-                            Log.v("name", place.getName());
-                            Log.v("id", fav_places.get(i).getId());
-                            Log.v("id", place.getId());
-
-
-
                             if(fav_places.get(i).getId().equals(place.getId())) {
-                                Log.v("","inside if statement");
                                 fav_places.remove(i);
                                 infavorites = true;
                                 break;
