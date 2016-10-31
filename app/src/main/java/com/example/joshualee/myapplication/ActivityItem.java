@@ -20,6 +20,7 @@ public class ActivityItem extends AppCompatActivity {
     TextView name;
     TextView distance;
     RatingBar ratings;
+    TextView money;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,13 +29,16 @@ public class ActivityItem extends AppCompatActivity {
         name = (TextView) findViewById(R.id.nameView);
         distance = (TextView) findViewById(R.id.distanceText);
         ratings = (RatingBar) findViewById(R.id.ratingBar);
+        money = (TextView) findViewById(R.id.moneyView);
         Log.v("ActivityItem", activityPlaces);
         final Place place = new Gson().fromJson(activityPlaces,Place.class);
         Log.v("ActivityItem",place.getName());
         directions = (Button) findViewById(R.id.button);
         distance.setText(String.valueOf(place.getDistance()));
         name.setText(place.getName());
+        money.setText(place.getPrice());
         float d_rating = Float.parseFloat(place.getRating());
+
         ratings.setRating(d_rating);
         directions.setOnClickListener(new View.OnClickListener() {
             @Override
