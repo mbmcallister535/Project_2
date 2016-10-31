@@ -179,109 +179,109 @@ public class JReader {
                     }
                     break;
             }
-            switch(w)
-            {
+//            switch(w)
+//            {
+//
+//                case(0):
+//                    if(wifi == false)
+//                    {
+//                        condition_counter++;
+//                    }
+//                    break;
+//
+//                case 1:
+//                    if(wifi == true)
+//                    {
+//                        condition_counter++;
+//                    }
+//                    break;
+//            }
+//            switch(d)
+//            {
+//                case 0:
+//                    if(dining == "coffee")
+//                    {
+//                        condition_counter++;
+//                    }
+//                    break;
+//                case 1:
+//                    if(dining == "food") {
+//                        condition_counter++;
+//                    }
+//                    break;
+//                case 2:
+//                    if(dining == "both")
+//                    {
+//                        condition_counter++;
+//                    }
+//                    break;
+//
+//            }
+//            switch(s)
+//            {
+//                case 0:
+//                    if(dining == "indoor")
+//                    {
+//                        condition_counter++;
+//                    }
+//                    break;
+//                case 1:
+//                    if(dining == "outdoor")
+//                    {
+//                        condition_counter++;
+//                    }
+//                    break;
+//                case 2:
+//                    if(dining == "both")
+//                    {
+//                        condition_counter++;
+//                    }
+//                    break;
+//            }
+////            switch(p)
+////            {
+////                case 0:
+////                    if(price == "$")
+////                    {
+////                        condition_counter++;
+////                    }
+////                    break;
+////                case(1):
+////                    if(price == "$$")
+////                    {
+////                        condition_counter++;
+////                    }
+////                    break;
+////                case(2):
+////                    if(price == "$$$")
+////                    {
+////                        condition_counter++;
+////                    }
+////                    break;
+////            }
+//            switch(n)
+//            {
+//                case 0:
+//                    if(noise == "quiet")
+//                    {
+//                        condition_counter++;
+//                    }
+//                    break;
+//                case 1:
+//                    if(noise == "medium")
+//                    {
+//                        condition_counter++;
+//                    }
+//                    break;
+//                case 2:
+//                    if(noise == "loud")
+//                    {
+//                        condition_counter++;
+//                    }
+//                    break;
+//            }
 
-                case(0):
-                    if(wifi == false)
-                    {
-                        condition_counter++;
-                    }
-                    break;
-
-                case 1:
-                    if(wifi == true)
-                    {
-                        condition_counter++;
-                    }
-                    break;
-            }
-            switch(d)
-            {
-                case 0:
-                    if(dining == "coffee")
-                    {
-                        condition_counter++;
-                    }
-                    break;
-                case 1:
-                    if(dining == "food") {
-                        condition_counter++;
-                    }
-                    break;
-                case 2:
-                    if(dining == "both")
-                    {
-                        condition_counter++;
-                    }
-                    break;
-
-            }
-            switch(s)
-            {
-                case 0:
-                    if(dining == "indoor")
-                    {
-                        condition_counter++;
-                    }
-                    break;
-                case 1:
-                    if(dining == "outdoor")
-                    {
-                        condition_counter++;
-                    }
-                    break;
-                case 2:
-                    if(dining == "both")
-                    {
-                        condition_counter++;
-                    }
-                    break;
-            }
-            switch(p)
-            {
-                case 0:
-                    if(price == "$")
-                    {
-                        condition_counter++;
-                    }
-                    break;
-                case(1):
-                    if(price == "$$")
-                    {
-                        condition_counter++;
-                    }
-                    break;
-                case(2):
-                    if(price == "$$$")
-                    {
-                        condition_counter++;
-                    }
-                    break;
-            }
-            switch(n)
-            {
-                case 0:
-                    if(noise == "quiet")
-                    {
-                        condition_counter++;
-                    }
-                    break;
-                case 1:
-                    if(noise == "medium")
-                    {
-                        condition_counter++;
-                    }
-                    break;
-                case 2:
-                    if(noise == "loud")
-                    {
-                        condition_counter++;
-                    }
-                    break;
-            }
-
-            if(condition_counter == 6)
+            if(condition_counter == 1)
             {
                 String con_counter = String.valueOf(condition_counter);
                 filterPlaces.add(temp);
@@ -292,12 +292,8 @@ public class JReader {
 
 
         }
-        Log.v("filter","----------------------------");
-        for(int i = 0; i < filterPlaces.size(); i++)
-        {
-            Log.v("filter",filterPlaces.get(i).getName());
-        }
     }
+
     public void set_distances()
     {
         for(int i = 0; i < length_list; i++)
