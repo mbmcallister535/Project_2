@@ -89,7 +89,7 @@
         android:layout_height="50dp"
         android:id="@+id/noiseSeekBar"
         android:max="2"
-        android:progress="1"
+        android:progress="0"
         android:layout_below="@+id/priceSeekBar"
         android:layout_alignEnd="@+id/priceSeekBar"
         android:layout_toEndOf="@+id/noise" />
