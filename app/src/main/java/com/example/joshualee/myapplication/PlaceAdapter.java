@@ -55,10 +55,10 @@ public class PlaceAdapter extends BaseAdapter{
         return 0;
     }
 
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(final int pos, View convertView, ViewGroup parent) {
         ViewHolder holder;
 
-        final Place place = places.get(position);
+        final Place place = places.get(pos);
 
         if(convertView == null)
         {
@@ -82,17 +82,43 @@ public class PlaceAdapter extends BaseAdapter{
                 }
             });
             String rating = place.getRating();
-            Log.v("rating",rating);
             float d_rating = Float.parseFloat(rating);
             rate_bar.setRating(d_rating);
             fav_view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//                    preferences = myContext.getSharedPreferences("PRODUCT_APP", 0);
-//                    preferences.edit().clear().commit();
-                    sharedPreference.addFavorite(myContext, places.get(position));
-                    String temp = String.valueOf(position);
-//                    Log.v("name", sharedPreference.getFavorites(myContext).get(position).getName());
+                    preferences = myContext.getSharedPreferences("PRODUCT_APP", 0);
+                    ArrayList<Place> fav_places = new ArrayList<Place>();
+                    fav_places = sharedPreference.getFavorites(myContext);
+                    preferences.edit().clear().commit();
+                    boolean infavorites = false;
+                    if(fav_places!=null){
+                        for(int i=0; i<fav_places.size(); i++){
+                            Log.v("name", fav_places.get(i).getName());
+                            Log.v("name", place.getName());
+                            Log.v("id", fav_places.get(i).getId());
+                            Log.v("id", place.getId());
+                            Log.v("break", "");
+                            if(fav_places.get(i).getId().equals(place.getId())) {
+                                Log.v("","inside if statement");
+                                fav_places.remove(i);
+                                infavorites = true;
+                                break;
+                            }
+                        }
+                    }
+                    if(fav_places != null){
+                        if(!infavorites){
+                            fav_places.add(place);
+                        }
+                        for(int n=0; n<fav_places.size(); n++){
+                            sharedPreference.addFavorite(myContext, fav_places.get(n));
+                        }
+                    }
+                    else{
+                        sharedPreference.addFavorite(myContext, place);
+                    }
+
                 }
             });
 

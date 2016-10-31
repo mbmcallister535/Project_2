@@ -48,7 +48,7 @@ public class JReader {
         try{
             //String str_user_latitude = Double.toString(u_lat);
             //String str_user_longitude = Double.toString(u_long);
-            url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+str_lat+","+str_long+"&radius=50000&type=cafe&key=AIzaSyBhnE7KFYA_ASATz_B94xYIT3Ubof0ubwY");
+            url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+str_lat+","+str_long+"&radius=50000&type=cafe&key=AIzaSyBnNX3AmkjNWFlsmLs6ApKVuXVOhjLjG0E");
             URLConnection yc = url.openConnection();
             Log.v("hi", "is it even here");
             BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
