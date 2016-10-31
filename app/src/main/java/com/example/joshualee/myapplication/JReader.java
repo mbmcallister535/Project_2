@@ -238,27 +238,27 @@ public class JReader {
                     }
                     break;
             }
-            switch(p)
-            {
-                case 0:
-                    if(price == "$")
-                    {
-                        condition_counter++;
-                    }
-                    break;
-                case(1):
-                    if(price == "$$")
-                    {
-                        condition_counter++;
-                    }
-                    break;
-                case(2):
-                    if(price == "$$$")
-                    {
-                        condition_counter++;
-                    }
-                    break;
-            }
+//            switch(p)
+//            {
+//                case 0:
+//                    if(price == "$")
+//                    {
+//                        condition_counter++;
+//                    }
+//                    break;
+//                case(1):
+//                    if(price == "$$")
+//                    {
+//                        condition_counter++;
+//                    }
+//                    break;
+//                case(2):
+//                    if(price == "$$$")
+//                    {
+//                        condition_counter++;
+//                    }
+//                    break;
+//            }
             switch(n)
             {
                 case 0:
@@ -281,7 +281,7 @@ public class JReader {
                     break;
             }
 
-            if(condition_counter == 6)
+            if(condition_counter == 5)
             {
                 String con_counter = String.valueOf(condition_counter);
                 filterPlaces.add(temp);
