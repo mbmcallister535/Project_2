@@ -58,16 +58,19 @@ public class PlaceAdapter extends BaseAdapter{
     }
 
     public View getView(final int pos, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-
+        ViewHolder holder = null;
+        final String position = Integer.toString(pos);
         final Place place = places.get(pos);
 
-        if(convertView == null)
-        {
+        if(convertView == null) {
             holder = new ViewHolder();
-
-             convertView = LayoutInflater.from(myContext).inflate(R.layout.list_item, null);
-            //LayoutInflater inflater = getLayoutInflater()
+            convertView = LayoutInflater.from(myContext).inflate(R.layout.list_item, null);
+            convertView.setTag(holder);
+        }
+        else{
+            holder = (ViewHolder) convertView.getTag();
+        }
+        //LayoutInflater inflater = getLayoutInflater()
             holder.titleView = (TextView) convertView.findViewById(R.id.nameView);
             holder.distanceView = (TextView) convertView.findViewById(R.id.distanceText);
             holder.placeCell = (RelativeLayout) convertView.findViewById(R.id.placeCell);
@@ -102,6 +105,7 @@ public class PlaceAdapter extends BaseAdapter{
                     ArrayList<Place> fav_places = new ArrayList<Place>();
                     fav_places = sharedPreference.getFavorites(myContext);
                     preferences.edit().clear().commit();
+                    Log.v("Position",position);
                     boolean infavorites = false;
                     if(fav_places!=null){
                         for(int i=0; i<fav_places.size(); i++){
@@ -109,7 +113,9 @@ public class PlaceAdapter extends BaseAdapter{
                             Log.v("name", place.getName());
                             Log.v("id", fav_places.get(i).getId());
                             Log.v("id", place.getId());
-                            Log.v("break", "");
+
+
+
                             if(fav_places.get(i).getId().equals(place.getId())) {
                                 Log.v("","inside if statement");
                                 fav_places.remove(i);
@@ -132,12 +138,6 @@ public class PlaceAdapter extends BaseAdapter{
 
                 }
             });
-
-            convertView.setTag(holder);
-        }
-        else{
-            holder = (ViewHolder) convertView.getTag();
-        }
 
         //set the certain text values for the corresponding files
         //4th then you can set the text in the view
