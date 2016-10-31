@@ -59,8 +59,6 @@ public class HomeFragment extends ListFragment {
         seating = filter.getInt("seatingSeekBar", 0);
         price = filter.getInt("priceSeekBar", 0);
         noise = filter.getInt("noiseSeekBar", 0);
-        Log.v("Wifi is what number", Integer.toString(wifi));
-
 
         double user_latitude = ((MainActivity)getActivity()).getmLatitude();
         double user_longitude = ((MainActivity)getActivity()).getmLongitude();
@@ -84,6 +82,7 @@ public class HomeFragment extends ListFragment {
 
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
+    // I wasn't able to get it right now, but I plan on trying to finish the async call if I ever have time
    /* private class DownloadImageTask extends AsyncTask<String, Void, String> {
         ImageView bmImage;
         JReader j;

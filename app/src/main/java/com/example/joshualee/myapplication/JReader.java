@@ -44,14 +44,11 @@ public class JReader {
         String json_string = "";
         String json_data = "";
         String html= "";
-        Log.v("Jreader","constructor");
         try{
-            Log.v("Jreader", "we are here");
             //String str_user_latitude = Double.toString(u_lat);
             //String str_user_longitude = Double.toString(u_long);
             url = new URL("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location="+str_lat+","+str_long+"&radius=50000&type=cafe&key=AIzaSyB65gfarp2f8JQ5XykeRJdFTdw9DC6smrk");
             URLConnection yc = url.openConnection();
-            Log.v("Jreader", "but we are not here");
             BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
             String inputLine;
             while ((inputLine = in.readLine()) != null) {
@@ -72,21 +69,14 @@ public class JReader {
                 String price_level = jsonObject.optString("price_level").toString();
                 JSONObject geometry = jsonObject.getJSONObject("geometry");
                 JSONObject location = geometry.getJSONObject("location");
-                System.out.println(jsonObject);
 
                 if (jsonObject.has("photos")) {
                     JSONArray photo = jsonObject.optJSONArray("photos");
-                    System.out.println(photo);
                     String photo_reference = "";
                     int photo_size = photo.length();
 
-                    System.out.println("123" + photo_size);
                     if(photo_size > 0) {
-                        System.out.println("123 we are here");
-                        System.out.println("123 "+jsonArray.optJSONObject(0));
-                        System.out.println("123 photos: "+photo.optJSONObject(0));
                         JSONArray photoObject = jsonArray.optJSONArray(0);
-                        System.out.println("Photo Object: " + photoObject);
                         html = photo.optJSONObject(0).optString("photo_reference").toString();
                         photo_url = "https://maps.googleapis.com/maps/api/place/photo?photoreference="+html+"&maxheight=400&key=AIzaSyBhnE7KFYA_ASATz_B94xYIT3Ubof0ubwY";
                         /*System.out.println(photo_url);
@@ -111,7 +101,6 @@ public class JReader {
 
 
                     open_now = hours.optString("open_now").toString();
-                    //System.out.println(open_now);
 
                 }
                 catch(JSONException e){
@@ -158,7 +147,6 @@ public class JReader {
             String noise = temp.getNoise();
             String switch_clause = String.valueOf(l);
             int condition_counter = 0;
-            Log.v("location",Integer.toString(l));
             switch (l){
                 case 0:
                     if(dist <= 5)
@@ -168,9 +156,6 @@ public class JReader {
                     break;
                 case 1:
                     if(dist<=10){
-                        Log.v("location", "more than 10 miles");
-                        Log.v("location",Double.toString(places.get(i).getDistance()));
-                        Log.v("Location",places.get(i).getName());
                         condition_counter++;
                     }
                     break;
@@ -181,8 +166,6 @@ public class JReader {
                     }
                     break;
             }
-            Log.v("Location",Integer.toString(condition_counter));
-            Log.v("Location","here");
               switch(w)
             {
                 case(0):
@@ -200,26 +183,26 @@ public class JReader {
                     break;
             }
             switch(d)
-        {
+            {
             case 0:
-                if(dining == "coffee")
+                if(dining.equals("coffee"))
                 {
                     condition_counter++;
                 }
                 break;
             case 1:
-                if(dining == "food") {
+                if(dining.equals("food")) {
                     condition_counter++;
                 }
                 break;
             case 2:
-                if(dining == "both")
+                if(dining.equals("both"))
                 {
                     condition_counter++;
                 }
                 break;
 
-        }
+            }
             switch(s)
             {
                 case 0:
@@ -287,8 +270,6 @@ public class JReader {
             if(condition_counter == 6)
             {
                 String con_counter = String.valueOf(condition_counter);
-                Log.v("Location","---------------------");
-                Log.v("Location",places.get(i).getName());
                 filterPlaces.add(places.get(i));
                 length_filter++;
             }

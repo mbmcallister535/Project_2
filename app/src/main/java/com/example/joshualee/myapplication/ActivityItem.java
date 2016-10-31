@@ -30,9 +30,7 @@ public class ActivityItem extends AppCompatActivity {
         distance = (TextView) findViewById(R.id.distanceText);
         ratings = (RatingBar) findViewById(R.id.ratingBar);
         money = (TextView) findViewById(R.id.moneyView);
-        Log.v("ActivityItem", activityPlaces);
         final Place place = new Gson().fromJson(activityPlaces,Place.class);
-        Log.v("ActivityItem",place.getName());
         directions = (Button) findViewById(R.id.button);
         distance.setText(String.valueOf(place.getDistance()));
         name.setText(place.getName());
@@ -49,6 +47,5 @@ public class ActivityItem extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        Log.v("ActivityItem","HELLO IS ANYONE THERE");
     }
 }
